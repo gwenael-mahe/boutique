@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 26, 2020 at 04:46 PM
+-- Generation Time: Feb 26, 2020 at 05:08 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -94,10 +94,9 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 DROP TABLE IF EXISTS `panier`;
 CREATE TABLE IF NOT EXISTS `panier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `prix` int(11) NOT NULL,
-  `img` varchar(255) NOT NULL,
   `id_product` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
