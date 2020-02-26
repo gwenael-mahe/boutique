@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 26, 2020 at 09:21 AM
+-- Generation Time: Feb 26, 2020 at 04:46 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -33,10 +33,24 @@ USE `rncp`;
 DROP TABLE IF EXISTS `achat`;
 CREATE TABLE IF NOT EXISTS `achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_product` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `prix` int(11) NOT NULL,
   `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `achat_product`
+--
+
+DROP TABLE IF EXISTS `achat_product`;
+CREATE TABLE IF NOT EXISTS `achat_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_achat` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -67,6 +81,23 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `img` varchar(255) DEFAULT 'img/cat/default.png',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panier`
+--
+
+DROP TABLE IF EXISTS `panier`;
+CREATE TABLE IF NOT EXISTS `panier` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `prix` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `id_product` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -81,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `prix` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `descriptionup` text NOT NULL,
+  `descriptiondown` text NOT NULL,
   `img` varchar(255) NOT NULL DEFAULT 'img/product/default.png',
   `id_souscat` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -98,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `sous_categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `img` varchar(255) DEFAULT 'img/sous_cat/default.png',
   `id_categorie` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -113,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
