@@ -4,18 +4,26 @@ class bdd{
 
     private $connexion;
 
-    public function connect(){
-        $connect = mysqli_connect('Localhost', 'root', '', 'rncp');
-        //var_dump($connect);
-        if($connect == false){
-            return false;
+    public function __construct()
+    {
+        if (!empty($this->connexion)) {
+            mysqli_close($this->connexion);
         }
-        $this->connexion = $connect;
+        $connexion = mysqli_connect('localhost', 'root', '', 'rncp');
+        if ($connexion == false) {
+            return false;
+        } else {
+            $this->connexion = $connexion;
+        }
     }
     
     public function close(){
         mysqli_close($this->connexion);
     }
-}
 
-?>
+    public function getco()
+    {
+        return $this->connexion;
+    }
+
+}

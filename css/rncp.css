@@ -1,12 +1,29 @@
-/* HTML */ 
+/* HTML */
 
-html{
+html {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
     margin: 0;
+    height: 100vh;
+    background: blue;
+}
+
+/* Main */
+
+main {
+    display: flex;
+    flex-grow: 0.6;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: silver;
 }
 
 /* Nav */
@@ -82,4 +99,26 @@ nav li li:hover ul.niveau3 {
     font-family: 'Pacifico', cursive;
     font-size: 40pt;
     text-align: center;
+}
+
+/* form */
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.8;
+    width: 25%;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 2px black;
+}
+
+/* div */
+
+.input {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.1;
+    justify-content: space-around;
+    align-items:center;
 }
