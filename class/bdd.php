@@ -2,7 +2,7 @@
 
 class bdd{
 
-    protected $connexion = "";
+    private $connexion;
 
     public function connect(){
         $connect = mysqli_connect('Localhost', 'root', '', 'rncp');
@@ -12,6 +12,7 @@ class bdd{
         }
         $this->connexion = $connect;
     }
+    
     public function close(){
         mysqli_close($this->connexion);
     }
