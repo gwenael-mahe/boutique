@@ -7,6 +7,11 @@ session_start();
 
 $user = new user();
 
+if(isset($_SESSION['id']))
+{
+    header('location:index.php');
+}
+
 if (isset($_POST['inscription'])) {
     $user->inscription($_POST['login'], $_POST['password'], $_POST['password_conf'], $_POST['email']);
 }

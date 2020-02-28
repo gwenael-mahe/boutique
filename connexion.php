@@ -7,8 +7,16 @@ session_start();
 
 $user = new user();
 
+if(isset($_SESSION['id']))
+{
+    header('location:index.php');
+}
+
 if (isset($_POST['connexion'])) {
     $user->connexion($_POST['login'], $_POST['password']);
+    $_SESSION['id'] = $user->getid();
+    $_SESSION['login'] = $user->getlogin();
+    $_SESSION['mail'] = $user->getmail();
 }
 
 ?>
