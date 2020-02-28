@@ -1,5 +1,6 @@
 <?php
 
+include 'class/bdd.php';
 include 'class/user.php';
 
 session_start();
@@ -49,6 +50,8 @@ if (isset($_POST['inscription'])) {
             </div>
 
             <input type='submit' name='inscription' value="S'inscrire" />
+
+            <?php echo $user->getlastmessage(); ?>
 
             <a href='connexion.php'> Se connecter </a>
         </form>

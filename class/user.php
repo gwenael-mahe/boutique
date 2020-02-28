@@ -1,7 +1,5 @@
 <?php
 
-include 'bdd.php';
-
 class user
 {
 
@@ -10,6 +8,7 @@ class user
     private $id;
     private $login;
     private $mail;
+    private $lastmessage;
 
     public function __construct()
     {
@@ -30,13 +29,13 @@ class user
                     $query = mysqli_query($this->bdd, $requete);
                     header('location:connexion.php');
                 } else {
-                    return "log";
+                    $this->lastmessage = 'Ce login est déjà utilisé';
                 }
             } else {
-                return "mdp";
+                $this->lastmessage = 'Les deux mots de passe sont différents';
             }
         } else {
-            return "empty";
+            $this->lastmessage = 'Veuillez remplir tous les champs';
         }
     }
 
@@ -45,109 +44,106 @@ class user
         $requete = "SELECT * FROM user WHERE login = '$login'";
         $query = mysqli_query($this->bdd, $requete);
         $result = mysqli_fetch_assoc($query);
-        if (!empty($result)) 
-        {
-            if ($login == $result["login"]) 
-            {
-                if (password_verify($mdp, $result["password"])) 
-                {
-                    $this->id = $result["id"];
-                    $this->login = $result["login"];
-                    $this->mail = $result["mail"];
-                    // $_SESSION['login'] = $this->login; // A décommenter 
-                    header('location:profil.php');
-                } else {
-                    return false;
-                }
+        if (!empty($result)) {
+            if (password_verify($mdp, $result["password"])) {
+                $this->id = $result["id"];
+                $this->login = $result["login"];
+                $this->mail = $result["mail"];
+                header('location:profil.php');
             } else {
-                return false;
+                $this->lastmessage = 'Erreur de mot de passe';
             }
         } else {
-            return false;
+            $this->lastmessage = 'Ce login n\' existe pas';
         }
     }
 
-//     public function profil($confmdp, $login = "", $prenom = "", $nom = "", $mail = "", $mdp = "")
-//     {
-//         $this->bdd->connect();
-//         $request = "SELECT mdp FROM utilisateurs WHERE id = " . $this->id . "";
-//         //var_dump($request);
-//         $query = mysqli_query($this->connexion, $request);
-//         $fetchmdp = mysqli_fetch_assoc($query);
-//         if (password_verify($confmdp, $fetchmdp["mdp"])) {
-//             if ($login != NULL) {
-//                 $request = "SELECT login FROM utilisateurs WHERE login = '$login'";
-//                 $query = mysqli_query($this->connexion, $request);
-//                 $result = mysqli_fetch_all($query);
-//                 if (empty($result)) {
-//                     $this->login = $login;
-//                 } else {
-//                     return false;
-//                 }
-//             }
-//             if ($mail != NULL) {
-//                 $request = "SELECT mail FROM utilisateurs WHERE login = '$mail'";
-//                 $query = mysqli_query($this->connexion, $request);
-//                 $result = mysqli_fetch_all($query);
-//                 if (empty($result)) {
-//                     $this->mail = $mail;
-//                 } else {
-//                     return false;
-//                 }
-//             }
-//             if ($mdp != NULL) {
-//                 $mpd = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
-//                 $request = "UPDATE utilisateurs SET mdp = '$mdp' WHERE id = " . $this->id . "";
-//                 //var_dump($request);
-//                 $query = mysqli_query($this->connexion, $request);
-//             }
-//             if ($prenom != NULL) {
-//                 $this->prenom = $prenom;
-//             }
-//             if ($nom != NULL) {
-//                 $this->nom = $nom;
-//             }
-//             $request = "UPDATE utilisateurs SET nom = '" . $this->nom . "',prenom = '" . $this->prenom . "', login = '" . $this->login . "',mail = '" . $this->mail . "'WHERE id = " . $this->id . "";
-//             //var_dump($request);
-//             $query = mysqli_query($this->connexion, $request);
-//             //var_dump($query);
-//         } else {
-//             return false;
-//         }
-//     }
-//     public function disconnect()
-//     {
-//         $this->id = NULL;
-//         $this->nom = NULL;
-//         $this->prenom = NULL;
-//         $this->login = NULL;
-//         $this->mail = NULL;
-//         $this->permissions = NULL;
-//     }
-//     public function getid()
-//     {
-//         return $this->id;
-//     }
-//     public function isConnected()
-//     {
-//         if ($this->id != null) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
+    public function getlastmessage()
+    {
+        return $this->lastmessage;
+    }
 
-//     public function getlogin()
-//     {
-//         return $this->login;
-//     }
-//     public function getperm()
-//     {
-//         return $this->permissions;
-//     }
+    //     public function profil($confmdp, $login = "", $prenom = "", $nom = "", $mail = "", $mdp = "")
+    //     {
+    //         $this->bdd->connect();
+    //         $request = "SELECT mdp FROM utilisateurs WHERE id = " . $this->id . "";
+    //         //var_dump($request);
+    //         $query = mysqli_query($this->connexion, $request);
+    //         $fetchmdp = mysqli_fetch_assoc($query);
+    //         if (password_verify($confmdp, $fetchmdp["mdp"])) {
+    //             if ($login != NULL) {
+    //                 $request = "SELECT login FROM utilisateurs WHERE login = '$login'";
+    //                 $query = mysqli_query($this->connexion, $request);
+    //                 $result = mysqli_fetch_all($query);
+    //                 if (empty($result)) {
+    //                     $this->login = $login;
+    //                 } else {
+    //                     return false;
+    //                 }
+    //             }
+    //             if ($mail != NULL) {
+    //                 $request = "SELECT mail FROM utilisateurs WHERE login = '$mail'";
+    //                 $query = mysqli_query($this->connexion, $request);
+    //                 $result = mysqli_fetch_all($query);
+    //                 if (empty($result)) {
+    //                     $this->mail = $mail;
+    //                 } else {
+    //                     return false;
+    //                 }
+    //             }
+    //             if ($mdp != NULL) {
+    //                 $mpd = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
+    //                 $request = "UPDATE utilisateurs SET mdp = '$mdp' WHERE id = " . $this->id . "";
+    //                 //var_dump($request);
+    //                 $query = mysqli_query($this->connexion, $request);
+    //             }
+    //             if ($prenom != NULL) {
+    //                 $this->prenom = $prenom;
+    //             }
+    //             if ($nom != NULL) {
+    //                 $this->nom = $nom;
+    //             }
+    //             $request = "UPDATE utilisateurs SET nom = '" . $this->nom . "',prenom = '" . $this->prenom . "', login = '" . $this->login . "',mail = '" . $this->mail . "'WHERE id = " . $this->id . "";
+    //             //var_dump($request);
+    //             $query = mysqli_query($this->connexion, $request);
+    //             //var_dump($query);
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+    //     public function disconnect()
+    //     {
+    //         $this->id = NULL;
+    //         $this->nom = NULL;
+    //         $this->prenom = NULL;
+    //         $this->login = NULL;
+    //         $this->mail = NULL;
+    //         $this->permissions = NULL;
+    //     }
+    //     public function getid()
+    //     {
+    //         return $this->id;
+    //     }
+    //     public function isConnected()
+    //     {
+    //         if ($this->id != null) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     }
 
-//     public function getconnexion()
-//     {
-//         return $this->bdd;
-//     }
+    //     public function getlogin()
+    //     {
+    //         return $this->login;
+    //     }
+    //     public function getperm()
+    //     {
+    //         return $this->permissions;
+    //     }
+
+    //     public function getconnexion()
+    //     {
+    //         return $this->bdd;
+    //     }
 }
