@@ -1,6 +1,6 @@
 <?php
 
-include 'bdd.php';
+// include 'bdd.php';
 
 class achat
 {
