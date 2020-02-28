@@ -6,9 +6,8 @@ session_start();
 
 $user = new user();
 
-if(isset($_POST['connexion']))
-{
-    $user->connexion($_POST['login'],$_POST['password']);
+if (isset($_POST['connexion'])) {
+    $user->connexion($_POST['login'], $_POST['password']);
 }
 
 ?>
@@ -25,11 +24,13 @@ if(isset($_POST['connexion']))
 
 <body>
 
+    <?php include 'include/header.php' ?>
+
     <main>
 
         <h1> Connexion </h1>
 
-        <form action='' method='POST'>
+        <form class='module_co' action='' method='POST'>
             <div class='input'>
                 <label> Login </label>
                 <input type='texte' name='login' required />
@@ -40,9 +41,13 @@ if(isset($_POST['connexion']))
             </div>
 
             <input type='submit' name='connexion' value="Se connecter" />
+
+            <a href='inscription.php'> S'inscrire </a>
         </form>
 
     </main>
+
+    <?php include 'include/footer.php' ?>
 
 </body>
 

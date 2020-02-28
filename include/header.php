@@ -49,5 +49,6 @@
     <?php } ?>
 
     <li class="princ"><a href='panier.php'> Panier </a></li>
+    <li class="princ"><a href='contact.php'> Contact </a></li>
     </ul>
 </nav>
