@@ -63,6 +63,7 @@ class user
         $request = "SELECT password FROM user WHERE id = " . $id . "";
         $query = mysqli_query($this->bdd, $request);
         $fetchmdp = mysqli_fetch_assoc($query);
+
         if (password_verify($confmdp, $fetchmdp["password"])) {
             if ($login != NULL) {
                 $request = "SELECT id,login FROM user WHERE login = '$login'";
@@ -73,15 +74,16 @@ class user
                 } elseif ($result['id'] == $id) {
                     $this->login = $login;
                 } else {
-
                     $this->lastmessage = 'Ce login est déjà utilisé';
                 }
             }
             if ($mail != NULL) {
-                $request = "SELECT mail FROM user WHERE login = '$mail'";
+                $request = "SELECT id,mail FROM user WHERE mail = '$mail'";
                 $query = mysqli_query($this->bdd, $request);
-                $result = mysqli_fetch_all($query);
+                $result = mysqli_fetch_assoc($query);
                 if (empty($result)) {
+                    $this->mail = $mail;
+                } elseif ($result['id'] == $id) {
                     $this->mail = $mail;
                 } else {
                     $this->lastmessage = 'Ce mail correspond déjà à un utilisateur';
@@ -93,12 +95,13 @@ class user
                 // var_dump($request);
                 $query = mysqli_query($this->bdd, $request);
             }
-
-            $request = "UPDATE user SET login = '" . $this->login . "', mail = '" . $this->mail . "' WHERE id = " . $id . "";
-            // var_dump($request);
-            $query = mysqli_query($this->bdd, $request);
-            // var_dump($query);
-            $this->lastmessage = 'Modification prise en compte';
+            if (!isset($this->lastmessage)) {
+                $request = "UPDATE user SET login = '" . $this->login . "', mail = '" . $this->mail . "' WHERE id = " . $id . "";
+                // var_dump($request);
+                $query = mysqli_query($this->bdd, $request);
+                // var_dump($query);
+                $this->lastmessage = 'Modification prise en compte';
+            }
         } else {
             $this->lastmessage = 'Vieux mot de passe erroné';
         }

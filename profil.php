@@ -11,8 +11,8 @@ if (isset($_POST['modification'])) {
     $user->profil($_POST['id'], $_POST['old_password'], $_POST['login'], $_POST['email'], $_POST['password']);
 
     if ($user->getlastmessage() == 'Modification prise en compte') {
-        $_SESSION['login'] = $_POST['login'];
-        $_SESSION['mail'] = $_POST['email'];
+       $_SESSION['login'] = $_POST['login'];
+       $_SESSION['mail'] = $_POST['email'];
     }
 }
 

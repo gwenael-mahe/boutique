@@ -35,7 +35,7 @@
         </li>
     <?php } elseif ($_SESSION['login'] != 'admin') { ?>
         <ul class="niveau2">
-            <li> Bonjour toi ! </li>
+            <li> Bonjour <?php echo $_SESSION['login']; ?> ! </li>
             <li><a href='profil.php'> Mon profil </a></li>
         </ul>
         </li>
