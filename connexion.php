@@ -2,10 +2,12 @@
 
 include 'class/bdd.php';
 include 'class/user.php';
+include 'class/affichage.php';
 
 session_start();
 
 $user = new user();
+$affichage = new affichage();
 
 if(isset($_SESSION['id']))
 {

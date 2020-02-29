@@ -31,6 +31,20 @@ main {
     background-color: rgba(192, 192, 192, 0.445);
 }
 
+/* header */
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
 /* Nav */
 
 nav {
@@ -128,11 +142,35 @@ nav li li:hover ul.niveau3 {
     background-color: rgba(192, 192, 192, 0.445);
 }
 
+.gestion_site {
+    display:flex;
+    flex-direction: column;
+    flex-grow:0.35;
+    height: 90%;
+    justify-content: space-around;
+    align-items: center;
+    border: solid black 1px;
+}
+
+.gestion_site ul {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow:0.8;
+    padding:0;
+    width: 80%;
+    justify-content: space-evenly;
+}
+
+.gestion_site li {
+    list-style-type: none;
+}
+
 .profil {
     display: flex;
     flex-direction: column;
-    flex-grow:0.35;
-    height:90%;
+    flex-grow: 0.35;
+    height: 90%;
     background: rgb(156, 187, 156);
     justify-content: space-evenly;
     align-items: center;
@@ -143,7 +181,7 @@ nav li li:hover ul.niveau3 {
     display: flex;
     flex-direction: column;
     flex-grow: 0.4;
-    width:80%;
+    width: 80%;
     justify-content: space-evenly;
     align-items: center;
     border: solid 2px black;
@@ -159,8 +197,8 @@ nav li li:hover ul.niveau3 {
     align-items: center;
 }
 
-.input input{
-    text-align:center;
+.input input {
+    text-align: center;
 }
 
 /* footer */

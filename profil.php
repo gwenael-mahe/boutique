@@ -2,17 +2,19 @@
 
 include 'class/bdd.php';
 include 'class/user.php';
+include 'class/affichage.php';
 
 session_start();
 
 $user = new user();
+$affichage = new affichage();
 
 if (isset($_POST['modification'])) {
     $user->profil($_POST['id'], $_POST['old_password'], $_POST['login'], $_POST['email'], $_POST['password']);
 
     if ($user->getlastmessage() == 'Modification prise en compte') {
-       $_SESSION['login'] = $_POST['login'];
-       $_SESSION['mail'] = $_POST['email'];
+        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['mail'] = $_POST['email'];
     }
 }
 
@@ -72,19 +74,35 @@ if (isset($_POST['deconnexion'])) {
 
         </section>
 
-        <section>
+        <?php if ($_SESSION['login'] != 'admin') { ?>
 
-            <h1> Historique d'achat </h1>
+            <section>
 
+                <h1> Historique d'achat </h1>
 
-        </section>
+            </section>
 
-        <section>
+            <section>
 
-            <h1> Mon panier </h1>
+                <h1> Mon panier </h1>
 
+            </section>
 
-        </section>
+        <?php } else { ?>
+
+            <section class='gestion_site'>
+
+                <h1> Gestion du site </h1>
+
+                <ul>
+                    <li> <a href='#'> Gérer les catégories et les sous-catégories </a> </li>
+                    <li> <a href='#'> Gérer les produits </a> </li>
+                    <li> <a href='#'> Gérer les différentes pages </a> </li>
+                </ul>
+
+            </section>
+
+        <?php } ?>
 
     </main>
 

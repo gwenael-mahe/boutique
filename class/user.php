@@ -92,14 +92,11 @@ class user
             if ($mdp != NULL) {
                 $mdp = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
                 $request = "UPDATE user SET password = '$mdp' WHERE id = " . $id . "";
-                // var_dump($request);
                 $query = mysqli_query($this->bdd, $request);
             }
             if (!isset($this->lastmessage)) {
                 $request = "UPDATE user SET login = '" . $this->login . "', mail = '" . $this->mail . "' WHERE id = " . $id . "";
-                // var_dump($request);
                 $query = mysqli_query($this->bdd, $request);
-                // var_dump($query);
                 $this->lastmessage = 'Modification prise en compte';
             }
         } else {

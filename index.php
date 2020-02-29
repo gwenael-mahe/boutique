@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php 
+include 'class/bdd.php';
+include 'class/affichage.php';
+session_start(); 
+
+$affichage = new affichage();
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,8 +16,12 @@
 </head>
 
 <body>
+    <header>
 
     <?php include 'include/header.php' ?>
+
+    </header>
+
 
     <main>
 
