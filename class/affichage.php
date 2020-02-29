@@ -67,11 +67,11 @@ class affichage{
     public function notation($id){
         $request = "SELECT AVG(notation) FROM avis WHERE id_produit = $id";
         $query = mysqli_query($this->bdd,$request);
-        $fetch = mysqli_fetch_assoc($query);
+        $fetch = mysqli_fetch_all($query);
         var_dump($fetch);
         if(!empty($fetch)){
             ?>
-                <section><p><? echo $fetch["AVG(notation)"]?></p><img src="img/product/etoile.png" class="etoile"></section>
+                <section><p><?=$fetch[0][0] ?></p><img src="img/product/etoile.png" class="etoile"></section>
             <?php
         }
     }
