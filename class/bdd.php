@@ -3,9 +3,7 @@
 class bdd{
 
     private $connexion;
-    private $nomcategorie;
-    private $lienimgcategorie;
-    private $idcategorie;
+    private $categorie;
 
     public function __construct()
     {
@@ -34,11 +32,12 @@ class bdd{
     public function checkcategorie()
     {
         $query_categorie = mysqli_query($this->connexion, "SELECT id,nom,description,img FROM categorie");
-        $result_categorie = mysqli_fetch_all($query_categorie);
-        foreach ($result_categorie as $checkcategorie) {
-            $this->nomcategorie[$checkcategorie[1]] = $checkcategorie[2];
-            $this->lienimgcategorie[$checkcategorie[1]] = $checkcategorie[3];
-            $this->idcategorie[$checkcategorie[1]] = $checkcategorie[0];
-        }
+        $result_categorie = mysqli_fetch_all($query_categorie,MYSQLI_ASSOC);
+        $this->categorie = $result_categorie;
+    }
+
+    public function get($var)
+    {
+        return $this->$var;
     }
 }

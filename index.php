@@ -1,9 +1,12 @@
 <?php 
 include 'class/bdd.php';
+include 'class/admin.php';
 include 'class/affichage.php';
+
 session_start(); 
 
 $affichage = new affichage();
+
 ?>
 
 <!DOCTYPE html>

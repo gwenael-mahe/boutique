@@ -2,6 +2,7 @@
 
 include 'class/bdd.php';
 include 'class/user.php';
+include 'class/admin.php';
 include 'class/affichage.php';
 
 session_start();
