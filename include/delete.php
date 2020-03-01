@@ -10,4 +10,9 @@ if(isset($_GET['idcat']))
     $moi->deletecategorie($_GET['idcat']);
 }
 
-header('Location:../admin.php');
+if(isset($_GET['idsouscat']))
+{
+    $moi->deletesouscategorie($_GET['idsouscat']);
+}
+
+header('Location:../categorie.php');

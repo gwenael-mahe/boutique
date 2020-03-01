@@ -26,16 +26,49 @@ class admin
 
     public function majcategorie($majcat, $majdescription, $newimg, $idcat)
     {
-        $query_majlieu = mysqli_query($this->get('bdd')->getco(), "UPDATE categorie SET nom = '".$majcat."' , description = '".$majdescription."', img = '".$newimg."' WHERE id = '".$idcat."'");
+        if ($newimg != NULL) {
+            $query_majcategorie = mysqli_query($this->get('bdd')->getco(), "UPDATE categorie SET nom = '" . $majcat . "' , description = '" . $majdescription . "', img = '" . $newimg . "' WHERE id = '" . $idcat . "'");
+        } else {
+            $query_majcategorie = mysqli_query($this->get('bdd')->getco(), "UPDATE categorie SET nom = '" . $majcat . "' , description = '" . $majdescription . "' WHERE id = '" . $idcat . "'");
+        }
     }
 
     public function deletecategorie($id_cat)
     {
         $id_cat = $_GET['idcat'];
-        $query_deletelieu = mysqli_query($this->get('bdd')->getco(), "DELETE FROM categorie WHERE id = '$id_cat'");
+        $query_deletecategorie = mysqli_query($this->get('bdd')->getco(), "DELETE FROM categorie WHERE id = '$id_cat'");
     }
 
-    public function traitementimg($nom, $id = '')
+    public function ajoutsouscategorie($newsouscat, $description, $cat, $img = '')
+    {
+        $recupidcat = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM categorie WHERE nom = '".$cat."'");
+        $idcat = mysqli_fetch_row($recupidcat);
+
+        if ($img != NULL) {
+            $query_ajoutsouscategorie = mysqli_query($this->get('bdd')->getco(), "INSERT INTO sous_categorie (nom,description,img,id_categorie) VALUE ('" . $newsouscat . "','" . $description . "','" . $img . "','" . $idcat[0] . "')");
+        } else {
+            $query_ajoutsouscategorie = mysqli_query($this->get('bdd')->getco(), "INSERT INTO sous_categorie (nom,description,id_categorie) VALUE ('" . $newsouscat . "','" . $description . "','" . $idcat[0] . "')");
+        }
+    }
+
+    public function majsouscategorie($majsouscat, $majdescription, $cat, $newimg, $idsouscat)
+    {
+        $recupidcat = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM categorie WHERE nom = '".$cat."'");
+        $idcat = mysqli_fetch_row($recupidcat);
+
+        if ($newimg != NULL) {
+            $query_majsouscategorie = mysqli_query($this->get('bdd')->getco(), "UPDATE sous_categorie SET nom = '" . $majsouscat . "' , description = '" . $majdescription . "', img = '" . $newimg . "' WHERE id = '" . $idsouscat . "'");
+        } else {
+            $query_majsouscategorie = mysqli_query($this->get('bdd')->getco(), "UPDATE sous_categorie SET nom = '" . $majsouscat . "' , description = '" . $majdescription . "', id_categorie = '" . $idcat[0] . "' WHERE id = '" . $idsouscat . "'");
+        }
+    }
+
+    public function deletesouscategorie($id_souscat)
+    {
+        $query_deletesouscategorie = mysqli_query($this->get('bdd')->getco(), "DELETE FROM sous_categorie WHERE id = '$id_souscat'");
+    }
+
+    public function traitementimg($nom)
     {
         if (!empty($_FILES["img"]["name"])) {
             $uploadOk = 1;

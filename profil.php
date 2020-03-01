@@ -96,7 +96,7 @@ if (isset($_POST['deconnexion'])) {
                 <h1> Gestion du site </h1>
 
                 <ul>
-                    <li> <a href='#'> Gérer les catégories et les sous-catégories </a> </li>
+                    <li> <a href='categorie.php'> Gérer les catégories et les sous-catégories </a> </li>
                     <li> <a href='#'> Gérer les produits </a> </li>
                     <li> <a href='#'> Gérer les différentes pages </a> </li>
                 </ul>

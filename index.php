@@ -19,12 +19,8 @@ $affichage = new affichage();
 </head>
 
 <body>
-    <header>
 
     <?php include 'include/header.php' ?>
-
-    </header>
-
 
     <main>
 

@@ -7,16 +7,30 @@ session_start();
 
 $affichage = new affichage();
 
-if (isset($_POST['modifier_cat'])) {
-    $affichage->get('admin')->traitementimg($_POST['nom'], $_POST['id']);
+if (isset($_POST['modifiercat'])) {
+    var_dump($_POST);
+    $affichage->get('admin')->traitementimg($_POST['nom']);
     $affichage->get('admin')->majcategorie($_POST['nom'], $_POST['description'], $affichage->get('admin')->get('filesimg'), $_POST['id']);
-    header('location:admin.php');
+    header('location:categorie.php');
 }
 
-if (isset($_POST['ajoutcat'])) {
+if (isset($_POST['ajoutercate'])) {
+    var_dump($_POST);
     $affichage->get('admin')->traitementimg($_POST['nom']);
     $affichage->get('admin')->ajoutcategorie($_POST['nom'], $_POST['description'], $affichage->get('admin')->get('filesimg'));
-    header('location:admin.php');
+    header('location:categorie.php');
+}
+
+if (isset($_POST['modifiersouscat'])) {
+    $affichage->get('admin')->traitementimg($_POST['nom']);
+    $affichage->get('admin')->majsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'], $affichage->get('admin')->get('filesimg'), $_POST['id']);
+    header('location:categorie.php');
+}
+
+if (isset($_POST['ajoutersouscat'])) {
+    $affichage->get('admin')->traitementimg($_POST['nom']);
+    $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'],$affichage->get('admin')->get('filesimg'));
+    header('location:categorie.php');
 }
 
 ?>
@@ -31,12 +45,7 @@ if (isset($_POST['ajoutcat'])) {
 </head>
 
 <body>
-    <header>
-
-        <?php include 'include/header.php' ?>
-
-    </header>
-
+    <?php include 'include/header.php' ?>
 
     <main>
         <?php if ($_SESSION['login'] == 'admin') { ?>
@@ -45,9 +54,15 @@ if (isset($_POST['ajoutcat'])) {
 
             <section class='categorie'>
 
-                <?php
-                $affichage->admincat();
-                ?>
+                <?php $affichage->admincat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
+
+            </section>
+
+            <h1> Gestion des Sous-Catégories </h1>
+
+            <section class='categorie'>
+
+                <?php $affichage->adminsouscat($affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
             </section>
         <?php } ?>
