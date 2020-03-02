@@ -98,6 +98,10 @@ class affichage{
         else
         return false;
     }
+    //-------------------- page panier --------------------//
+    public function panier($iduser){
+        $request = "";
+    }
 }
 
 ?>
