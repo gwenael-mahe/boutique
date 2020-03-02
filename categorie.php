@@ -8,28 +8,22 @@ session_start();
 $affichage = new affichage();
 
 if (isset($_POST['modifiercat'])) {
-    var_dump($_POST);
-    $affichage->get('admin')->traitementimg($_POST['nom']);
-    $affichage->get('admin')->majcategorie($_POST['nom'], $_POST['description'], $affichage->get('admin')->get('filesimg'), $_POST['id']);
+    $affichage->get('admin')->majcategorie($_POST['nom'], $_POST['description'], $_POST['id']);
     header('location:categorie.php');
 }
 
-if (isset($_POST['ajoutercate'])) {
-    var_dump($_POST);
-    $affichage->get('admin')->traitementimg($_POST['nom']);
-    $affichage->get('admin')->ajoutcategorie($_POST['nom'], $_POST['description'], $affichage->get('admin')->get('filesimg'));
+if (isset($_POST['ajoutercat'])) {
+    $affichage->get('admin')->ajoutcategorie($_POST['nom'], $_POST['description']);
     header('location:categorie.php');
 }
 
 if (isset($_POST['modifiersouscat'])) {
-    $affichage->get('admin')->traitementimg($_POST['nom']);
-    $affichage->get('admin')->majsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'], $affichage->get('admin')->get('filesimg'), $_POST['id']);
+    $affichage->get('admin')->majsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'], $_POST['id']);
     header('location:categorie.php');
 }
 
 if (isset($_POST['ajoutersouscat'])) {
-    $affichage->get('admin')->traitementimg($_POST['nom']);
-    $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'],$affichage->get('admin')->get('filesimg'));
+    $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'],$_POST['categorie']);
     header('location:categorie.php');
 }
 
