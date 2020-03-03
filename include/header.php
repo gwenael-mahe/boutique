@@ -41,13 +41,15 @@
             <ul class="niveau2">
                 <li> Bonjour <?php echo $_SESSION['login']; ?> ! </li>
                 <li><a href='profil.php'> Mon profil </a></li>
+                <li><a href='include/delete.php'> Déconnexion </a></li>
             </ul>
             </li>
         <?php } else { ?>
             <ul class="niveau2">
                 <li><a href='profil.php'> Mon profil </a></li>
-                <li><a href='admin.php'> Gérer les produits </a></li>
+                <li><a href='produit.php'> Gérer les produits </a></li>
                 <li><a href='categorie.php'> Gérer les cat/sous_cat </a></li>
+                <li><a href='include/delete.php?iduser=<?php echo $_SESSION['id']; ?>'> Déconnexion </a></li>
             </ul>
             </li>
         <?php } ?>

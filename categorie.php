@@ -35,7 +35,7 @@ if (isset($_POST['ajoutersouscat'])) {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/rncp.css">
-    <title> Admin </title>
+    <title> Catégorie_admin </title>
 </head>
 
 <body>

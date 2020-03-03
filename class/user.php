@@ -107,7 +107,7 @@ class user
     public function disconnect()
     {
         session_destroy();
-        header('location:index');
+        //('location:index');
     }
 
     public function getlastmessage()
