@@ -19,10 +19,6 @@ if (isset($_POST['modification'])) {
     }
 }
 
-if (isset($_POST['deconnexion'])) {
-    $user->disconnect();
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -67,10 +63,6 @@ if (isset($_POST['deconnexion'])) {
 
                 <?php echo $user->getlastmessage(); ?>
 
-            </form>
-
-            <form action='' method='POST'>
-                <input type='submit' name='deconnexion' value="Se déconnecter" />
             </form>
 
         </section>
