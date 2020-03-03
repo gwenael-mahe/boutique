@@ -15,4 +15,4 @@ if(isset($_GET['idsouscat']))
     $moi->deletesouscategorie($_GET['idsouscat']);
 }
 
-header('Location:../categorie.php');
+// header('Location:../categorie.php');

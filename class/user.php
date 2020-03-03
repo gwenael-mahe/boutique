@@ -29,7 +29,7 @@ class user
                     $query = mysqli_query($this->bdd, $requete);
                     header('location:connexion.php');
                 } else {
-                    $this->lastmessage = 'Ce login est déjà utilisé';
+                    $this->lastmessage = 'Ce login / mail est déjà utilisé';
                 }
             } else {
                 $this->lastmessage = 'Les deux mots de passe sont différents';

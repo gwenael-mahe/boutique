@@ -11,7 +11,7 @@ class bdd{
         if (!empty($this->connexion)) {
             mysqli_close($this->connexion);
         }
-        $connexion = mysqli_connect('localhost', 'root', '', 'rncp');
+        $connexion = mysqli_connect('localhost', 'root', '', 'boutique');
         if ($connexion == false) {
             return false;
         } else {
