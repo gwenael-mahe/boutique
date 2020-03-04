@@ -32,7 +32,7 @@ if (isset($_POST['ajoutersouscat'])) {
     <?php include 'include/header.php' ?>
 
     <main>
-        <?php if ($_SESSION['login'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { ?>
 
             <h1> Gestion des Sous-Catégories </h1>
 
@@ -46,7 +46,7 @@ if (isset($_POST['ajoutersouscat'])) {
 
             <section id='categorie_user' class='categorie'>
 
-                <?php $affichage->usersouscat($affichage->get('admin')->get('bdd')->get('souscategorie')); ?>
+                <?php $affichage->usersouscat($affichage->get('admin')->get('bdd')->get('produitadmin'),$affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
             </section>
 

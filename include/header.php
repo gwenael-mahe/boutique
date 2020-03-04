@@ -8,11 +8,11 @@
             <li class="princ"><a href='boutique.php?idpage=1'> Boutique </a>
                 <ul class="niveau2">
                     <?php foreach ($affichage->get('admin')->get('bdd')->get('categorie') as $cat) { ?>
-                        <li><a href='categorie?idcat=<?php echo $cat['id']; ?>'> <?php echo $cat['nom']; ?></a>
+                        <li><a href='categorie.php?idcat=<?php echo $cat['id']; ?>'> <?php echo $cat['nom']; ?></a>
                             <ul class='niveau3'>
                                 <?php foreach ($affichage->get('admin')->get('bdd')->get('souscategorie') as $souscat) {
                                     if ($souscat['id_categorie'] == $cat['id']) { ?>
-                                        <li><a href='souscategorie?idsouscat=<?php echo $souscat['id']; ?>'> <?php echo $souscat['nom']; ?></a></li>
+                                        <li><a href='sous_categorie.php?idsouscat=<?php echo $souscat['id']; ?>'> <?php echo $souscat['nom']; ?></a></li>
                                 <?php }
                                 } ?>
                             </ul>

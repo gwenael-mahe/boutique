@@ -202,35 +202,55 @@ class affichage
                     <input type='submit' value='Modifier' name='modifierproduit' />
                     <a href="include/delete.php?idproduit=<?php echo $infos_produit['id']; ?>">X</a>
                 </form>
-            <?php }
+                <?php }
         }
     }
 
     // ------------- Affichage user ---------------- //
 
-    public function usercat($cat)
+    public function usercat($produit, $souscat, $cat)
     {
-        if (!empty($cat)) {
-            foreach ($cat as $infos_cat) { ?>
-                <article>
-                    <img src='<?php echo $infos_cat['img']; ?>' alt='img_cat' />
-                    <p> <?php echo $infos_cat['nom']; ?></p>
-                    <p> <?php echo $infos_cat['description']; ?></p>
-                </article>
-            <?php }
+        if (!empty($produit)) {
+            foreach ($cat as $infos_cat) {
+                if ($infos_cat['id'] == $_GET['idcat']) { ?>
+                    <h1> <?php echo $infos_cat['nom']; ?> </h1>
+                    <?php }
+            }
+        }
+        foreach ($produit as $infos_produit) {
+            foreach ($souscat as $infos_souscat) {
+                if ($infos_produit['id_souscat'] == $infos_souscat['id']) {
+                    if ($infos_souscat['id_categorie'] == $_GET['idcat']) { ?>
+                        <article>
+                            <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                            <p> <?php echo $infos_produit['nom']; ?></p>
+                            <p> <?php echo $infos_produit['prix']; ?></p>
+                            <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> En savoir plus </a>
+                        </article>
+                    <?php }
+                }
+            }
         }
     }
 
-    public function usersouscat($souscat)
+    public function usersouscat($produit, $souscat)
     {
-        if (!empty($souscat)) {
-            foreach ($souscat as $infos_souscat) { ?>
-                <article>
-                    <img src='<?php echo $infos_souscat['img']; ?>' alt='img_souscat' />
-                    <p> <?php echo $infos_souscat['nom']; ?></p>
-                    <p> <?php echo $infos_souscat['description']; ?></p>
-                </article>
-            <?php }
+        if (!empty($produit)) {
+            foreach ($souscat as $infos_souscat) {
+                if ($infos_souscat['id'] == $_GET['idsouscat']) { ?>
+                    <h1> <?php echo $infos_souscat['nom']; ?> </h1>
+                <?php }
+            }
+            foreach ($produit as $infos_produit) {
+                if ($infos_produit['id_souscat'] == $_GET['idsouscat']) { ?>
+                    <article>
+                        <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                        <p> <?php echo $infos_produit['nom']; ?></p>
+                        <p> <?php echo $infos_produit['prix']; ?></p>
+                        <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> En savoir plus </a>
+                    </article>
+                <?php }
+            }
         }
     }
 

@@ -32,25 +32,27 @@ if (isset($_POST['ajoutercat'])) {
     <?php include 'include/header.php' ?>
 
     <main>
-        <?php if ($_SESSION['login'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { ?>
 
-            <h1> Gestion des Catégories </h1>
+                <h1> Gestion des Catégories </h1>
 
-            <section class='categorie'>
+                <section class='categorie'>
 
-                <?php $affichage->admincat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                    <?php $affichage->admincat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
-            </section>
+                </section>
 
-        <?php } else { ?>
+            <?php
+            } else { ?>
 
-            <section id='categorie_user' class='categorie'>
+                <section id='categorie_user' class='categorie'>
 
-                <?php $affichage->usercat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                    <?php $affichage->usercat($affichage->get('admin')->get('bdd')->get('produitadmin'),$affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
-            </section>
+                </section>
 
-        <?php } ?>
+        <?php
+            } ?>
 
     </main>
 
