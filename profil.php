@@ -88,8 +88,9 @@ if (isset($_POST['modification'])) {
                 <h1> Gestion du site </h1>
 
                 <ul>
-                    <li> <a href='categorie.php'> Gérer les catégories et les sous-catégories </a> </li>
-                    <li> <a href='#'> Gérer les produits </a> </li>
+                    <li> <a href='categorie.php'> Gérer les catégories </a> </li>
+                    <li> <a href='sous_categorie.php'> Gérer les sous-catégories </a> </li>
+                    <li> <a href='produit.php'> Gérer les produits </a> </li>
                     <li> <a href='#'> Gérer les différentes pages </a> </li>
                 </ul>
 

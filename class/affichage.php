@@ -32,6 +32,8 @@ class affichage
         <?php
     }
 
+    // ------------- Affichage admin ---------------- //
+
     public function admincat($variable)
     {
         if (!empty($variable)) {
@@ -200,6 +202,48 @@ class affichage
                     <input type='submit' value='Modifier' name='modifierproduit' />
                     <a href="include/delete.php?idproduit=<?php echo $infos_produit['id']; ?>">X</a>
                 </form>
+            <?php }
+        }
+    }
+
+    // ------------- Affichage user ---------------- //
+
+    public function usercat($cat)
+    {
+        if (!empty($cat)) {
+            foreach ($cat as $infos_cat) { ?>
+                <article>
+                    <img src='<?php echo $infos_cat['img']; ?>' alt='img_cat' />
+                    <p> <?php echo $infos_cat['nom']; ?></p>
+                    <p> <?php echo $infos_cat['description']; ?></p>
+                </article>
+            <?php }
+        }
+    }
+
+    public function usersouscat($souscat)
+    {
+        if (!empty($souscat)) {
+            foreach ($souscat as $infos_souscat) { ?>
+                <article>
+                    <img src='<?php echo $infos_souscat['img']; ?>' alt='img_souscat' />
+                    <p> <?php echo $infos_souscat['nom']; ?></p>
+                    <p> <?php echo $infos_souscat['description']; ?></p>
+                </article>
+            <?php }
+        }
+    }
+
+    public function userproduit($produit)
+    {
+        if (!empty($produit)) {
+            foreach ($produit as $infos_produit) { ?>
+                <article>
+                    <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                    <p> <?php echo $infos_produit['nom']; ?></p>
+                    <p> <?php echo $infos_produit['prix']; ?></p>
+                    <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> en savoir plus </a>
+                </article>
 <?php }
         }
     }

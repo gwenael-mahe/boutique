@@ -17,16 +17,6 @@ if (isset($_POST['ajoutercat'])) {
     header('location:categorie.php');
 }
 
-if (isset($_POST['modifiersouscat'])) {
-    $affichage->get('admin')->majsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie'], $_POST['id']);
-    header('location:categorie.php');
-}
-
-if (isset($_POST['ajoutersouscat'])) {
-    $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'],$_POST['categorie']);
-    header('location:categorie.php');
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -52,13 +42,14 @@ if (isset($_POST['ajoutersouscat'])) {
 
             </section>
 
-            <h1> Gestion des Sous-Catégories </h1>
+        <?php } else { ?>
 
-            <section class='categorie'>
+            <section id='categorie_user' class='categorie'>
 
-                <?php $affichage->adminsouscat($affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                <?php $affichage->usercat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
             </section>
+
         <?php } ?>
 
     </main>

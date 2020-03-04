@@ -5,29 +5,19 @@
     <nav>
         <ul>
             <li class="princ"><a href='index.php'> Accueil </a></li>
-            <li class="princ"><a href='produit.php'> Produits </a>
+            <li class="princ"><a href='boutique.php?idpage=1'> Boutique </a>
                 <ul class="niveau2">
-                    <li><a href='categorie.php'> cat 1 </a>
-                        <ul class="niveau3">
-                            <li><a href='sous_categorie.php'> Sous-cat 1 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 2 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 3 </a></li>
-                        </ul>
-                    </li>
-                    <li><a href='categorie.php'> cat 2 </a>
-                        <ul class="niveau3">
-                            <li><a href='sous_categorie.php'> Sous-cat 1 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 2 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 3 </a></li>
-                        </ul>
-                    </li>
-                    <li><a href='categorie.php'> cat 3 </a>
-                        <ul class="niveau3">
-                            <li><a href='sous_categorie.php'> Sous-cat 1 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 2 </a></li>
-                            <li><a href='sous_categorie.php'> Sous-cat 3 </a></li>
-                        </ul>
-                    </li>
+                    <?php foreach ($affichage->get('admin')->get('bdd')->get('categorie') as $cat) { ?>
+                        <li><a href='categorie?idcat=<?php echo $cat['id']; ?>'> <?php echo $cat['nom']; ?></a>
+                            <ul class='niveau3'>
+                                <?php foreach ($affichage->get('admin')->get('bdd')->get('souscategorie') as $souscat) {
+                                    if ($souscat['id_categorie'] == $cat['id']) { ?>
+                                        <li><a href='souscategorie?idsouscat=<?php echo $souscat['id']; ?>'> <?php echo $souscat['nom']; ?></a></li>
+                                <?php }
+                                } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="princ"> Compte
@@ -48,7 +38,8 @@
             <ul class="niveau2">
                 <li><a href='profil.php'> Mon profil </a></li>
                 <li><a href='produit.php'> Gérer les produits </a></li>
-                <li><a href='categorie.php'> Gérer les cat/sous_cat </a></li>
+                <li><a href='categorie.php'> Gérer les catégorie </a></li>
+                <li><a href='sous_categorie.php'> Gérer les sous-catégorie </a></li>
                 <li><a href='include/delete.php?iduser=<?php echo $_SESSION['id']; ?>'> Déconnexion </a></li>
             </ul>
             </li>
