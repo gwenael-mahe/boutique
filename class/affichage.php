@@ -1,7 +1,5 @@
 <?php
 
-// include 'bdd.php';
-
 class affichage{
 
     private $bdd;
@@ -11,7 +9,6 @@ class affichage{
         $bdd = new bdd();
         $this->bdd = $bdd->getco();
     }
-
     //-------------------- page produit --------------------//
     public function product($id){
         $request = "SELECT id,nom,prix,descriptionup,descriptiondown,img FROM product WHERE id = $id";
@@ -100,7 +97,43 @@ class affichage{
     }
     //-------------------- page panier --------------------//
     public function panier($iduser){
-        $request = "";
+        $request = "SELECT product.img,product.nom,product.prix,panier.quantite,panier.id FROM panier INNER JOIN product ON panier.id_product = product.id WHERE panier.id_user = $iduser";
+        $query = mysqli_query($this->bdd,$request);
+        $fetch = mysqli_fetch_all($query);
+        if(!empty($fetch)){
+            ?>
+            <section>
+                <table id="tablepanier">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Nom</td>
+                            <td>Prix</td>
+                            <td>Nombre</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+            <?php
+            foreach($fetch as list($img,$nom,$prix,$quantity,$id)){
+                ?>
+                    <tr>
+                        <td><img src="<?php echo $img ?>" class="imgpanier"></td>
+                        <td><?php echo $nom ?></td>
+                        <td><?php echo $prix ?></td>
+                        <td><?php echo $quantity ?></td>
+                        <td><a href="include/deletepanier.php?id=<?php echo $id ?>"><img src="img/product/delete.png" class="deletepanier"></a></td>
+                    </tr>
+                <?php
+            }
+            ?>
+                    </tbody>
+                </table>
+            </section>
+            <?php
+        }
+        else
+        return false;
     }
 }
 
