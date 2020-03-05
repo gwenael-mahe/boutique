@@ -15,9 +15,7 @@ if (isset($_POST['modifiersouscat'])) {
 if (isset($_POST['ajoutersouscat'])) {
     $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie']);
     header('location:sous_categorie.php');
-}
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,13 +30,14 @@ if (isset($_POST['ajoutersouscat'])) {
     <?php include 'include/header.php' ?>
 
     <main>
-        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin' && (isset(explode('?', $_SERVER['REQUEST_URI'])[1]) == false)) { ?>
 
             <h1> Gestion des Sous-Catégories </h1>
 
             <section class='categorie'>
 
-                <?php $affichage->adminsouscat($affichage->get('admin')->get('bdd')->get('souscategorie'), $affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                <?php $affichage->adminsouscat_modif($affichage->get('admin')->get('bdd')->get('souscategorie'), $affichage->get('admin')->get('bdd')->get('categorie'));
+                $affichage->adminsouscat_ajout($affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
             </section>
 
@@ -46,7 +45,7 @@ if (isset($_POST['ajoutersouscat'])) {
 
             <section id='categorie_user' class='categorie'>
 
-                <?php $affichage->usersouscat($affichage->get('admin')->get('bdd')->get('produitadmin'),$affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                <?php $affichage->usersouscat($affichage->get('admin')->get('bdd')->get('produitadmin'), $affichage->get('admin')->get('bdd')->get('souscategorie'), $affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
             </section>
 

@@ -7,6 +7,9 @@ session_start();
 
 $affichage = new affichage();
 
+$nombreDePages = $affichage->get('admin')->get('bdd')->get('nombreDePages');
+$page = $affichage->get('admin')->get('bdd')->get('page');
+
 if (isset($_POST['ajouterproduit'])) {
     $affichage->get('admin')->ajoutproduit($_POST['nom'], $_POST['prix'], $_POST['descriptionup'], $_POST['descriptiondown'], $_POST['sous_categorie']);
     header('location:produit.php');
@@ -15,12 +18,7 @@ if (isset($_POST['ajouterproduit'])) {
 if (isset($_POST['modifierproduit'])) {
     $affichage->get('admin')->majproduit($_POST['nom'], $_POST['prix'], $_POST['descriptionup'], $_POST['descriptiondown'], $_POST['sous_categorie'], $_POST['id']);
     header('location:produit.php');
-}
-
-$nombreDePages = $affichage->get('admin')->get('bdd')->get('nombreDePages');
-$page = $affichage->get('admin')->get('bdd')->get('page');
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,7 +35,7 @@ $page = $affichage->get('admin')->get('bdd')->get('page');
     <main>
         <section id='categorie_user' class='categorie'>
 
-            <?php $affichage->userproduit($affichage->get('admin')->get('bdd')->get('produit')); ?>
+            <?php $affichage->userlisteproduit($affichage->get('admin')->get('bdd')->get('produit')); ?>
 
         </section>
         <aside>

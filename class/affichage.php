@@ -34,10 +34,12 @@ class affichage
 
     // ------------- Affichage admin ---------------- //
 
-    public function admincat($variable)
+    // ----- catégorie ----- //
+
+    public function admincat_modif($cat)
     {
-        if (!empty($variable)) {
-            foreach ($variable as $infos_cat) { ?>
+        if (!empty($cat)) {
+            foreach ($cat as $infos_cat) { ?>
                 <form action='' method='POST' enctype="multipart/form-data">
                     <div>
                         <img src='<?php echo $infos_cat['img'] ?>' alt='img_cat' />
@@ -56,7 +58,11 @@ class affichage
                     <a href="include/delete.php?idcat=<?php echo $infos_cat['id']; ?>">X</a>
                 </form>
         <?php }
-        } ?>
+        }
+    }
+
+    public function admincat_ajout()
+    { ?>
 
         <form action='' method='POST' enctype="multipart/form-data">
             <input type="file" name="img" />
@@ -72,7 +78,9 @@ class affichage
         </form>
         <?php }
 
-    public function adminsouscat($souscat, $cat)
+    // ----- sous-catégorie ----- //
+
+    public function adminsouscat_modif($souscat, $cat)
     {
         if (!empty($souscat)) {
             foreach ($souscat as $infos_souscat) { ?>
@@ -103,31 +111,38 @@ class affichage
                     <input type='submit' value='Modifier' name='modifiersouscat' />
                     <a href="include/delete.php?idsouscat=<?php echo $infos_souscat['id']; ?>">X</a>
                 </form>
+            <?php }
+        }
+    }
+
+    public function adminsouscat_ajout($cat)
+    {
+        if (!empty($cat)) { ?>
+            <form action='' method='POST' enctype="multipart/form-data">
+                <input type="file" name="img" />
+                <div>
+                    <label> Catégorie </label>
+                    <select name='categorie'>
+                        <?php foreach ($cat as $infos_cat) { ?>
+                            <option> <?php echo $infos_cat['nom']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div>
+                    <label> Nom de la sous-catégorie </label>
+                    <input type='texte' name='nom' />
+                </div>
+                <div>
+                    <label> Description de la sous-catégorie </label>
+                    <textarea rows="5" cols="30" name='description'> </textarea>
+                </div>
+
+                <input type="submit" name='ajoutersouscat' value='Ajouter' />
+            </form>
         <?php }
-        } ?>
+    }
 
-        <form action='' method='POST' enctype="multipart/form-data">
-            <input type="file" name="img" />
-            <div>
-                <label> Catégorie </label>
-                <select name='categorie'>
-                    <?php foreach ($cat as $infos_cat) { ?>
-                        <option> <?php echo $infos_cat['nom']; ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div>
-                <label> Nom de la sous-catégorie </label>
-                <input type='texte' name='nom' />
-            </div>
-            <div>
-                <label> Description de la sous-catégorie </label>
-                <textarea rows="5" cols="30" name='description'> </textarea>
-            </div>
-
-            <input type="submit" name='ajoutersouscat' value='Ajouter' />
-        </form>
-    <?php }
+    // ----- produit ----- //
 
     public function adminproduit_ajout($souscat)
     { ?>
@@ -208,6 +223,8 @@ class affichage
 
     // ------------- Affichage user ---------------- //
 
+    // ----- catégorie ----- //
+
     public function usercat($produit, $souscat, $cat)
     {
         if (!empty($produit)) {
@@ -233,6 +250,8 @@ class affichage
         }
     }
 
+    // ----- sous-catégorie ----- //
+
     public function usersouscat($produit, $souscat)
     {
         if (!empty($produit)) {
@@ -254,7 +273,10 @@ class affichage
         }
     }
 
-    public function userproduit($produit)
+    // ----- liste produits ----- //
+
+
+    public function userlisteproduit($produit)
     {
         if (!empty($produit)) {
             foreach ($produit as $infos_produit) { ?>
@@ -267,7 +289,6 @@ class affichage
 <?php }
         }
     }
-
 
     public function get($var)
     {

@@ -15,9 +15,7 @@ if (isset($_POST['modifiercat'])) {
 if (isset($_POST['ajoutercat'])) {
     $affichage->get('admin')->ajoutcategorie($_POST['nom'], $_POST['description']);
     header('location:categorie.php');
-}
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,27 +30,28 @@ if (isset($_POST['ajoutercat'])) {
     <?php include 'include/header.php' ?>
 
     <main>
-        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin' && (isset(explode('?', $_SERVER['REQUEST_URI'])[1]) == false)) { ?>
 
-                <h1> Gestion des Catégories </h1>
+            <h1> Gestion des Catégories </h1>
 
-                <section class='categorie'>
+            <section class='categorie'>
 
-                    <?php $affichage->admincat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
+                <?php $affichage->admincat_modif($affichage->get('admin')->get('bdd')->get('categorie'));
+                $affichage->admincat_ajout(); ?>
 
-                </section>
-
-            <?php
-            } else { ?>
-
-                <section id='categorie_user' class='categorie'>
-
-                    <?php $affichage->usercat($affichage->get('admin')->get('bdd')->get('produitadmin'),$affichage->get('admin')->get('bdd')->get('souscategorie'),$affichage->get('admin')->get('bdd')->get('categorie')); ?>
-
-                </section>
+            </section>
 
         <?php
-            } ?>
+        } else { ?>
+
+            <section id='categorie_user' class='categorie'>
+
+                <?php $affichage->usercat($affichage->get('admin')->get('bdd')->get('produitadmin'), $affichage->get('admin')->get('bdd')->get('souscategorie'), $affichage->get('admin')->get('bdd')->get('categorie')); ?>
+
+            </section>
+
+        <?php
+        } ?>
 
     </main>
 

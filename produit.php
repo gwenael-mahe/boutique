@@ -5,9 +5,7 @@ include 'class/bdd.php';
 
 session_start();
 
-$affichage = new affichage();
-
-?>
+$affichage = new affichage(); ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -22,7 +20,7 @@ $affichage = new affichage();
     <?php include 'include/header.php' ?>
 
     <main>
-        <?php if ($_SESSION['login'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin' && (isset(explode('?', $_SERVER['REQUEST_URI'])[1]) == false)) { ?>
 
             <h1> Gestion des produits </h1>
 
