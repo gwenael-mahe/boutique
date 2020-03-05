@@ -1,11 +1,15 @@
-<?php 
+<?php
 include 'class/bdd.php';
 include 'class/admin.php';
 include 'class/affichage.php';
 
-session_start(); 
+session_start();
 
 $affichage = new affichage();
+
+if (isset($_GET['recherche'])) {
+header('location:boutique.php?recherche='.$_GET['recherche']);
+}
 
 ?>
 

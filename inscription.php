@@ -10,13 +10,16 @@ session_start();
 $user = new user();
 $affichage = new affichage();
 
-if(isset($_SESSION['id']))
-{
+if (isset($_SESSION['id'])) {
     header('location:index.php');
 }
 
 if (isset($_POST['inscription'])) {
     $user->inscription($_POST['login'], $_POST['password'], $_POST['password_conf'], $_POST['email']);
+}
+
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
 }
 
 ?>

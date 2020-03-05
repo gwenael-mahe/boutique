@@ -4,6 +4,7 @@ class affichage
 {
 
     private $admin;
+    private $lastmessage;
 
     public function __construct()
     {
@@ -27,6 +28,11 @@ class affichage
                 <h1> <?php echo $fetch['titre']; ?></h1>
                 <p> <?php echo $fetch['description']; ?></p>
             </article>
+
+            <form action='' method='GET'>
+                <input type='search' name='recherche' placeholder="Recherche..." />
+                <input type='submit' value='Rechercher' />
+            </form>
 
         </section>
         <?php
@@ -286,7 +292,30 @@ class affichage
                     <p> <?php echo $infos_produit['prix']; ?></p>
                     <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> en savoir plus </a>
                 </article>
+                <?php }
+        }
+    }
+
+    public function userlisteproduitrecherche($produitadmin, $resultats)
+    {
+        if (!empty($produitadmin)) {
+            if (!empty($resultats)) { ?>
+                <h1> Résultat de votre recherche </h1>
+                <?php foreach ($produitadmin as $produits) {
+                    foreach ($resultats as $resultat_recherche) {
+                        if ($produits['nom'] == $resultat_recherche['nom']) { ?>
+                            <article>
+                                <img src='<?php echo $produits['img']; ?>' alt='img_souscat' />
+                                <p> <?php echo $produits['nom']; ?></p>
+                                <p> <?php echo $produits['prix']; ?></p>
+                                <a href='produit.php?idproduit=<?php echo $produits['id']; ?>'> en savoir plus </a>
+                            </article>
 <?php }
+                    }
+                }
+            } else {
+                $this->lastmessage =  'Aucun résultats pour cette recherche';
+            }
         }
     }
 

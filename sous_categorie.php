@@ -15,6 +15,10 @@ if (isset($_POST['modifiersouscat'])) {
 if (isset($_POST['ajoutersouscat'])) {
     $affichage->get('admin')->ajoutsouscategorie($_POST['nom'], $_POST['description'], $_POST['categorie']);
     header('location:sous_categorie.php');
+}
+
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
 } ?>
 
 <!DOCTYPE html>

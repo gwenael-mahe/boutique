@@ -10,8 +10,7 @@ session_start();
 $user = new user();
 $affichage = new affichage();
 
-if(isset($_SESSION['id']))
-{
+if (isset($_SESSION['id'])) {
     header('location:index.php');
 }
 
@@ -20,6 +19,10 @@ if (isset($_POST['connexion'])) {
     $_SESSION['id'] = $user->getid();
     $_SESSION['login'] = $user->getlogin();
     $_SESSION['mail'] = $user->getmail();
+}
+
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
 }
 
 ?>

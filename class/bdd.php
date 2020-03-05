@@ -58,7 +58,7 @@ class bdd
     public function checkproduitadmin()
     {
         $query_produitadmin = mysqli_query($this->connexion, "SELECT * FROM product");
-        $result_produitadmin = mysqli_fetch_all($query_produitadmin,MYSQLI_ASSOC);
+        $result_produitadmin = mysqli_fetch_all($query_produitadmin, MYSQLI_ASSOC);
         $this->produitadmin = $result_produitadmin;
     }
 
@@ -76,6 +76,15 @@ class bdd
         $this->page = $idpage;
     }
 
+    public function resultatrecherche($recherche)
+    {
+        $query_produit_recherche = mysqli_query($this->connexion, "SELECT nom FROM product WHERE CONCAT(nom,descriptionup,descriptiondown) LIKE '%".$recherche."%' ORDER BY id DESC");
+        $result_produit_recherche = mysqli_fetch_all($query_produit_recherche,MYSQLI_ASSOC);
+        $this->recherche_produit = $result_produit_recherche;
+        return $this->recherche_produit;
+        ?>
+
+    <?php }
 
     public function get($var)
     {

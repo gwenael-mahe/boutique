@@ -19,7 +19,6 @@ class admin
 
     public function ajoutcategorie($newcat, $description)
     {
-
         $query_ajoutcategorie = mysqli_query($this->get('bdd')->getco(), "INSERT INTO categorie (nom,description) VALUE ('" . $newcat . "','" . $description . "')");
         $this->bdd->checkcategorie();
 
@@ -171,7 +170,6 @@ class admin
 
     public function ajoutproduit($newproduit, $prix, $descriptionup, $descriptiondown,$souscat)
     {
-        echo 'toto';
         $recupidsouscat = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM sous_categorie WHERE nom = '" . $souscat . "'");
         $idsouscat = mysqli_fetch_row($recupidsouscat);
 

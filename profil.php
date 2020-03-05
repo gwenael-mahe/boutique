@@ -19,6 +19,10 @@ if (isset($_POST['modification'])) {
     }
 }
 
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
+}
+
 ?>
 
 <!DOCTYPE html>

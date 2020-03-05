@@ -18,7 +18,12 @@ if (isset($_POST['ajouterproduit'])) {
 if (isset($_POST['modifierproduit'])) {
     $affichage->get('admin')->majproduit($_POST['nom'], $_POST['prix'], $_POST['descriptionup'], $_POST['descriptiondown'], $_POST['sous_categorie'], $_POST['id']);
     header('location:produit.php');
-} ?>
+}
+
+if (isset($_GET['recherche']) && !empty($_GET['recherche'])) {
+    $affichage->get('admin')->get('bdd')->resultatrecherche($_GET['recherche']);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +40,14 @@ if (isset($_POST['modifierproduit'])) {
     <main>
         <section id='categorie_user' class='categorie'>
 
-            <?php $affichage->userlisteproduit($affichage->get('admin')->get('bdd')->get('produit')); ?>
+            <?php if (!isset($_GET['recherche'])) {
+                $affichage->userlisteproduit($affichage->get('admin')->get('bdd')->get('produit'));
+            } elseif (isset($_GET['recherche']) && !empty($_GET['recherche'])) {
+                $affichage->userlisteproduitrecherche($affichage->get('admin')->get('bdd')->get('produitadmin'), $affichage->get('admin')->get('bdd')->get('recherche_produit'));
+                if (!empty($affichage->get('lastmessage'))) {
+                    echo $affichage->get('lastmessage');
+                }
+            } ?>
 
         </section>
         <aside>

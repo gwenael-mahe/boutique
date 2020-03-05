@@ -15,6 +15,10 @@ if (isset($_POST['modifiercat'])) {
 if (isset($_POST['ajoutercat'])) {
     $affichage->get('admin')->ajoutcategorie($_POST['nom'], $_POST['description']);
     header('location:categorie.php');
+}
+
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
 } ?>
 
 <!DOCTYPE html>
