@@ -117,35 +117,34 @@ class affichage
                     <input type='submit' value='Modifier' name='modifiersouscat' />
                     <a href="include/delete.php?idsouscat=<?php echo $infos_souscat['id']; ?>">X</a>
                 </form>
-            <?php }
+        <?php }
         }
     }
 
     public function adminsouscat_ajout($cat)
-    {
-        if (!empty($cat)) { ?>
-            <form action='' method='POST' enctype="multipart/form-data">
-                <input type="file" name="img" />
-                <div>
-                    <label> Catégorie </label>
-                    <select name='categorie'>
-                        <?php foreach ($cat as $infos_cat) { ?>
-                            <option> <?php echo $infos_cat['nom']; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div>
-                    <label> Nom de la sous-catégorie </label>
-                    <input type='texte' name='nom' />
-                </div>
-                <div>
-                    <label> Description de la sous-catégorie </label>
-                    <textarea rows="5" cols="30" name='description'> </textarea>
-                </div>
+    { ?>
+        <form action='' method='POST' enctype="multipart/form-data">
+            <input type="file" name="img" />
+            <div>
+                <label> Catégorie </label>
+                <select name='categorie'>
+                    <?php foreach ($cat as $infos_cat) { ?>
+                        <option> <?php echo $infos_cat['nom']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div>
+                <label> Nom de la sous-catégorie </label>
+                <input type='texte' name='nom' />
+            </div>
+            <div>
+                <label> Description de la sous-catégorie </label>
+                <textarea rows="5" cols="30" name='description'> </textarea>
+            </div>
 
-                <input type="submit" name='ajoutersouscat' value='Ajouter' />
-            </form>
-        <?php }
+            <input type="submit" name='ajoutersouscat' value='Ajouter' />
+        </form>
+    <?php
     }
 
     // ----- produit ----- //
@@ -292,7 +291,7 @@ class affichage
                     <p> <?php echo $infos_produit['prix']; ?></p>
                     <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> en savoir plus </a>
                 </article>
-                <?php }
+            <?php }
         }
     }
 

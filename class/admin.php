@@ -178,7 +178,7 @@ class admin
         $query_ajoutproduit = mysqli_query($this->get('bdd')->getco(), "INSERT INTO product (nom,prix,descriptionup,descriptiondown,id_souscat) VALUE ('" . $newproduit . "','" . $prix . "','" . $descriptionup . "','" . $descriptiondown . "','" . $idsouscat[0] . "')");
         $this->bdd->checkproduitadmin();
 
-        foreach ($this->bdd->get('produit') as $produit) {
+        foreach ($this->bdd->get('produitadmin') as $produit) {
             if ($produit['nom'] == $newproduit) {
                 $idnewproduit = $produit['id'];
                 echo $idnewproduit;

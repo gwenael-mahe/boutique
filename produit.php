@@ -8,12 +8,12 @@ session_start();
 $affichage = new affichage();
 
 if (isset($_POST['modifierproduit'])) {
-    $affichage->get('admin')->majproduit($_POST['nom'], $_POST['prix'], $_POST['descriptionup'], $_POST['descriptiondown'], $_POST['sous_categorie'], $_POST['id']);
+    $affichage->get('admin')->majproduit($_POST['nom'], $_POST['prix'], addslashes($_POST['descriptionup']), addslashes($_POST['descriptiondown']), $_POST['sous_categorie'], $_POST['id']);
     header('location:produit.php');
 }
 
 if (isset($_POST['ajouterproduit'])) {
-    $affichage->get('admin')->ajoutproduit($_POST['nom'], $_POST['prix'], $_POST['descriptionup'], $_POST['descriptiondown'], $_POST['sous_categorie']);
+    $affichage->get('admin')->ajoutproduit($_POST['nom'], $_POST['prix'], addslashes($_POST['descriptionup']), addslashes($_POST['descriptiondown']), $_POST['sous_categorie']);
     header('location:produit.php');
 }
 
