@@ -59,7 +59,7 @@ if (isset($_GET['recherche'])) {
                     <input type='password' name='password' />
                 </div>
                 <div class='input'>
-                    <label> Vieux mot de passe * </label>
+                    <label> Ancien mot de passe * </label>
                     <input type='password' name='old_password' required />
                 </div>
 
@@ -73,13 +73,13 @@ if (isset($_GET['recherche'])) {
 
         <?php if ($_SESSION['login'] != 'admin') { ?>
 
-            <section>
+            <section class='profil'>
 
                 <h1> Historique d'achat </h1>
 
             </section>
 
-            <section>
+            <section class='profil'>
 
                 <h1> Mon panier </h1>
 

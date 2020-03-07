@@ -38,7 +38,8 @@ header {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-between;
-    border:2px solid black; /* à retirer */
+    border: 2px solid black;
+    /* à retirer */
 }
 
 header section {
@@ -158,6 +159,13 @@ nav li.princ:hover {
     border: solid 2px black;
 }
 
+.module_co a {
+    text-decoration: underline overline;
+    text-underline-position: under;
+    font-style: italic;
+    color: black;
+}
+
 /* page profil */
 
 .main_profil {
@@ -173,9 +181,8 @@ nav li.princ:hover {
     flex-direction: column;
     flex-grow: 0.35;
     height: 90%;
-    justify-content: space-around;
     align-items: center;
-    border: solid black 1px;
+    border-left: solid black 1px;
 }
 
 .gestion_site ul {
@@ -199,7 +206,10 @@ nav li.princ:hover {
     height: 90%;
     justify-content: space-evenly;
     align-items: center;
-    border: solid black 1px;
+}
+
+.profil~.profil {
+    border-left: solid black 1px;
 }
 
 .profil_form {
@@ -236,12 +246,29 @@ nav li.princ:hover {
 }
 
 #categorie_user {
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.8;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #categorie_user article {
     display: flex;
+    flex-direction: row;
+    flex-grow: 0.8;
+    align-self: stretch;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#categorie_user div {
+    display: flex;
+    flex-basis: 20%;
+    height: 45%;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     border: solid black 2px;
 }
@@ -267,6 +294,17 @@ nav li.princ:hover {
     border-radius: 10%;
 }
 
+/* a pagination */
+
+.page {
+    color: blue;
+    text-decoration: underline;
+}
+.page:visited {
+    color: purple;
+    text-decoration: underline;
+}
+
 /* footer */
 
 footer {
@@ -274,7 +312,8 @@ footer {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-around;
-    border: 2px solid black; /* à retirer */
+    border: 2px solid black;
+    /* à retirer */
 }
 
 footer aside {

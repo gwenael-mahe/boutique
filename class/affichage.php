@@ -236,23 +236,27 @@ class affichage
             foreach ($cat as $infos_cat) {
                 if ($infos_cat['id'] == $_GET['idcat']) { ?>
                     <h1> <?php echo $infos_cat['nom']; ?> </h1>
-                    <?php }
+        <?php }
             }
-        }
-        foreach ($produit as $infos_produit) {
-            foreach ($souscat as $infos_souscat) {
-                if ($infos_produit['id_souscat'] == $infos_souscat['id']) {
-                    if ($infos_souscat['id_categorie'] == $_GET['idcat']) { ?>
-                        <article>
-                            <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
-                            <p> <?php echo $infos_produit['nom']; ?></p>
-                            <p> <?php echo $infos_produit['prix']; ?></p>
-                            <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> En savoir plus </a>
-                        </article>
-                    <?php }
+        } ?>
+        <article>
+            <?php
+            foreach ($produit as $infos_produit) {
+                foreach ($souscat as $infos_souscat) {
+                    if ($infos_produit['id_souscat'] == $infos_souscat['id']) {
+                        if ($infos_souscat['id_categorie'] == $_GET['idcat']) { ?>
+                            <div>
+                                <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                                <p> <?php echo $infos_produit['nom']; ?></p>
+                                <p> Prix : <?php echo $infos_produit['prix']; ?> €</p>
+                                <a class="page" href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> Voir le produit</a>
+                            </div>
+            <?php }
+                    }
                 }
-            }
-        }
+            } ?>
+        </article>
+        <?php
     }
 
     // ----- sous-catégorie ----- //
@@ -263,35 +267,42 @@ class affichage
             foreach ($souscat as $infos_souscat) {
                 if ($infos_souscat['id'] == $_GET['idsouscat']) { ?>
                     <h1> <?php echo $infos_souscat['nom']; ?> </h1>
+            <?php }
+            } ?>
+            <article>
+                <?php
+                foreach ($produit as $infos_produit) {
+                    if ($infos_produit['id_souscat'] == $_GET['idsouscat']) { ?>
+                        <div>
+                            <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                            <p> <?php echo $infos_produit['nom']; ?></p>
+                            <p> <?php echo $infos_produit['prix']; ?></p>
+                            <a class="page" href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
+                        </div>
                 <?php }
-            }
-            foreach ($produit as $infos_produit) {
-                if ($infos_produit['id_souscat'] == $_GET['idsouscat']) { ?>
-                    <article>
-                        <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
-                        <p> <?php echo $infos_produit['nom']; ?></p>
-                        <p> <?php echo $infos_produit['prix']; ?></p>
-                        <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> En savoir plus </a>
-                    </article>
-                <?php }
-            }
-        }
+                } ?>
+            </article>
+        <?php }
     }
 
     // ----- liste produits ----- //
 
-
     public function userlisteproduit($produit)
     {
-        if (!empty($produit)) {
-            foreach ($produit as $infos_produit) { ?>
-                <article>
-                    <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
-                    <p> <?php echo $infos_produit['nom']; ?></p>
-                    <p> <?php echo $infos_produit['prix']; ?></p>
-                    <a href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> en savoir plus </a>
-                </article>
-            <?php }
+        if (!empty($produit)) { ?>
+            <article>
+                <?php
+                foreach ($produit as $infos_produit) { ?>
+                    <div>
+                        <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                        <p> <?php echo $infos_produit['nom']; ?></p>
+                        <p> <?php echo $infos_produit['prix']; ?></p>
+                        <a class="page" href='produit.php?idproduit=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
+                    </div>
+                <?php }
+                ?>
+            </article>
+            <?php
         }
     }
 
