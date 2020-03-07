@@ -11,7 +11,7 @@ $user = new user();
 $affichage = new affichage();
 
 if (isset($_SESSION['id'])) {
-    header('location:index.php');
+header('location:index.php');
 }
 
 if (isset($_POST['connexion'])) {

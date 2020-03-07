@@ -10,6 +10,7 @@ class bdd
     private $produitadmin;
     private $nombreDePages;
     private $page;
+    private $recherche_produit;
 
     public function __construct()
     {
