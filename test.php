@@ -15,9 +15,9 @@ echo '<h1>Page de Test</h1>';
 // $affi->commentaire(1);
 // $affi->addcommentaire(1,"blablabla",1,1);
 
-$achat = new achat();
-//$achat->addtohistory(1,$achat->pricecalculation(1));
-$achat->sendmail(1,6);
+// $achat = new achat();
+// $achat->addtohistory(1,$achat->pricecalculation(1));
+// $achat->sendmail(1,6);
 // echo $achat->pricecalculation(1);
 // $achat->__construct();
 // $achat->addtocart(1,1,1);
