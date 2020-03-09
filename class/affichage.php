@@ -17,20 +17,30 @@ class affichage{
         // var_dump($fetch);
         if(!empty($fetch)){
             ?>
-                <section>
-                    <article>
+                <section class="sectionproduit">
+                    <article class="articleproduitup">
                         <img src="<?php echo $fetch['img'] ?>" class="imgproduct">
                         <p><?php echo $fetch['descriptionup'] ?></p>
                     </article>
-                    <article>
-                        <p><?php echo $fetch['descriptiondown'] ?></p>
-                        <p><?php echo $fetch['prix'] ?></p>
+                    <article class="articleproduitdown">
+                        <div class="divproduitup">
+                            <p><?php echo $fetch['descriptiondown'] ?></p>
+                            <p><?php echo $fetch['prix'] ?>€</p>
+                        </div>
+                        <div class="divproduitdown">
+                            <?php
+                            if(isset($_SESSION['login'])){
+                                ?>
+                                <form action="" method="post" class="formproduit">
+                                <input type="number" name="quantity">
+                                <input type="image" src="img/product/addtocart.png" name="add" value="submit" class="submitimg">
+                            </form>
+                            <?php
+                            }
+                            ?>
+                        </div>
                     </article>
-                    <form action="" method="post">
-                        <input type="number" name="quantity">
-                        <input type="hidden" name="<?php echo $fetch['id'] ?>">
-                        <input type="image" src="img/product/addtocart.png" name="add" value="submit" class="submitimg">
-                    </form>
+                    
                 </section>
             <?php
         }
@@ -65,10 +75,10 @@ class affichage{
         $request = "SELECT AVG(notation) FROM avis WHERE id_produit = $id";
         $query = mysqli_query($this->bdd,$request);
         $fetch = mysqli_fetch_all($query);
-        var_dump($fetch);
+        //var_dump($fetch);
         if(!empty($fetch)){
             ?>
-                <section><p><?=$fetch[0][0] ?></p><img src="img/product/etoile.png" class="etoile"></section>
+                <section id="notation"><p>Avis utilisateurs : <?=$fetch[0][0] ?></p><img src="img/product/etoile.png" class="etoile"></section>
             <?php
         }
     }
@@ -79,14 +89,14 @@ class affichage{
         if(!empty($fetch)){
             foreach($fetch as list($com,$date,$login,$avis)){
                 ?>
-                    <section>
-                        <article>
+                    <section class="sectionnotation">
+                        <article class="articlenotationup">
                             <p>Par <?php echo $login?></p>
                             <p>Le <?php echo $date ?></p>
                         </article>
-                        <article>
-                            <p><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
+                        <article class="articlenotationdown">
                             <p><?php echo $com ?></p>
+                            <p><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
                         </article>
                     </section>
                 <?php

@@ -83,3 +83,56 @@ nav li li:hover ul.niveau3 {
     font-size: 40pt;
     text-align: center;
 }
+
+/* Produit */
+
+#mainproduit{
+    padding-left: 2%;
+}
+.sectionproduit{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+}
+.imgproduct{
+    width: 20%;
+    padding-right: 2%;
+}
+.articleproduitup{
+    background-color: aqua;
+    display: flex;
+}
+.articleproduitdown{
+    background-color: bisque;
+    display: flex;
+    justify-content: space-between;
+}
+.divproduitup{
+    display: flex;
+    flex-direction: column;
+}
+.submitimg{
+    width: 5%;
+}
+#notation{
+    display: flex;
+    background-color: burlywood;
+    align-items: center;
+}
+.etoile{
+    width: 2%;
+}
+.sectionnotation{
+    display: flex;
+    background-color: cadetblue;
+    flex-direction: column;
+}
+.articlenotationup{
+    display: flex;
+    justify-content: space-between;
+}
+.articlenotationdown{
+    display: flex;
+    justify-content: space-between;
+
+}
