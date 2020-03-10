@@ -3,12 +3,12 @@
 include 'class/bdd.php';
 include 'class/affichage.php';
 include 'class/achat.php';
+include 'class/admin.php';
 
 
 session_start();
 
 $achat = new achat();
-$_SESSION['id'] = 1;
 $prix = $achat->pricecalculation($_SESSION['id']);
 if(isset($_POST["send"])){
     if(!empty($_POST["nom"]) && !empty($_POST["prenom"]) && strlen($_POST["cbname"]) == 16 && !empty($_POST["end"]) && strlen($_POST["crypto"]) == 3){

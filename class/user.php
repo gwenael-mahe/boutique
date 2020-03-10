@@ -1,7 +1,5 @@
 <?php
 
-include 'bdd.php';
-
 class user
 {
 
@@ -10,142 +8,125 @@ class user
     private $id;
     private $login;
     private $mail;
+    private $lastmessage;
 
     public function __construct()
     {
         $this->bdd = new bdd();
+        $this->bdd = $this->bdd->getco();
     }
 
     public function inscription($login, $mdp, $confmdp, $mail)
     {
         if ($login != NULL && $mdp != NULL && $confmdp != NULL && $mail != NULL) {
             if ($mdp == $confmdp) {
-                $this->bdd->connect();
                 $requete = "SELECT login,mail FROM user WHERE login = '$login' OR mail = '$mail'";
-                $query = mysqli_query($this->connexion, $requete);
+                $query = mysqli_query($this->bdd, $requete);
                 $result = mysqli_fetch_all($query);
-                //var_dump($result);
                 if (empty($result)) {
-                    //echo "test";
                     $mdp = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
                     $requete = "INSERT INTO user (login, password, mail) VALUES ('$login','$mdp','$mail')";
-                    //var_dump($requete);
-                    $query = mysqli_query($this->connexion, $requete);
-                    //var_dump($query);
-                    return "ok";
+                    $query = mysqli_query($this->bdd, $requete);
+                    header('location:connexion.php');
                 } else {
-                    return "log";
+                    $this->lastmessage = 'Ce login / mail est déjà utilisé';
                 }
             } else {
-                return "mdp";
+                $this->lastmessage = 'Les deux mots de passe sont différents';
             }
         } else {
-            return "empty";
+            $this->lastmessage = 'Veuillez remplir tous les champs';
         }
     }
 
     public function connexion($login, $mdp)
     {
-        $this->bdd->connect();
-        $requete = "SELECT * FROM utilisateurs WHERE login = '$login'";
-        $query = mysqli_query($this->connexion, $requete);
+        $requete = "SELECT * FROM user WHERE login = '$login'";
+        $query = mysqli_query($this->bdd, $requete);
         $result = mysqli_fetch_assoc($query);
         if (!empty($result)) {
-            if ($login == $result["login"]) {
-                if (password_verify($mdp, $result["mdp"])) {
-                    $this->id = $result["id"];
-                    $this->nom = $result["nom"];
-                    $this->prenom = $result["prenom"];
-                    $this->login = $result["login"];
-                    $this->mail = $result["mail"];
-                    $this->permissions = $result["permissions"];
-                    return [$this->id, $this->nom, $this->prenom, $this->login, $this->mail, $this->permissions];
-                } else {
-                    return false;
-                }
+            if (password_verify($mdp, $result["password"])) {
+                $this->id = $result["id"];
+                $this->login = $result["login"];
+                $this->mail = $result["mail"];
+                header('location:profil.php');
             } else {
-                return false;
+                $this->lastmessage = 'Erreur de mot de passe';
             }
         } else {
-            return false;
+            $this->lastmessage = 'Ce login n\' existe pas';
         }
     }
-    public function profil($confmdp, $login = "", $prenom = "", $nom = "", $mail = "", $mdp = "")
+
+    public function profil($id, $confmdp, $login, $mail, $mdp = '')
     {
-        $this->bdd->connect();
-        $request = "SELECT mdp FROM utilisateurs WHERE id = " . $this->id . "";
-        //var_dump($request);
-        $query = mysqli_query($this->connexion, $request);
+        $request = "SELECT password FROM user WHERE id = " . $id . "";
+        $query = mysqli_query($this->bdd, $request);
         $fetchmdp = mysqli_fetch_assoc($query);
-        if (password_verify($confmdp, $fetchmdp["mdp"])) {
+
+        if (password_verify($confmdp, $fetchmdp["password"])) {
             if ($login != NULL) {
-                $request = "SELECT login FROM utilisateurs WHERE login = '$login'";
-                $query = mysqli_query($this->connexion, $request);
-                $result = mysqli_fetch_all($query);
+                $request = "SELECT id,login FROM user WHERE login = '$login'";
+                $query = mysqli_query($this->bdd, $request);
+                $result = mysqli_fetch_assoc($query);
                 if (empty($result)) {
                     $this->login = $login;
+                } elseif ($result['id'] == $id) {
+                    $this->login = $login;
                 } else {
-                    return false;
+                    $this->lastmessage = 'Ce login est déjà utilisé';
                 }
             }
             if ($mail != NULL) {
-                $request = "SELECT mail FROM utilisateurs WHERE login = '$mail'";
-                $query = mysqli_query($this->connexion, $request);
-                $result = mysqli_fetch_all($query);
+                $request = "SELECT id,mail FROM user WHERE mail = '$mail'";
+                $query = mysqli_query($this->bdd, $request);
+                $result = mysqli_fetch_assoc($query);
                 if (empty($result)) {
                     $this->mail = $mail;
+                } elseif ($result['id'] == $id) {
+                    $this->mail = $mail;
                 } else {
-                    return false;
+                    $this->lastmessage = 'Ce mail correspond déjà à un utilisateur';
                 }
             }
             if ($mdp != NULL) {
-                $mpd = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
-                $request = "UPDATE utilisateurs SET mdp = '$mdp' WHERE id = " . $this->id . "";
-                //var_dump($request);
-                $query = mysqli_query($this->connexion, $request);
+                $mdp = password_hash($mdp, PASSWORD_BCRYPT, array('cost' => 12));
+                $request = "UPDATE user SET password = '$mdp' WHERE id = " . $id . "";
+                $query = mysqli_query($this->bdd, $request);
             }
-            if ($prenom != NULL) {
-                $this->prenom = $prenom;
+            if (!isset($this->lastmessage)) {
+                $request = "UPDATE user SET login = '" . $this->login . "', mail = '" . $this->mail . "' WHERE id = " . $id . "";
+                $query = mysqli_query($this->bdd, $request);
+                $this->lastmessage = 'Modification prise en compte';
             }
-            if ($nom != NULL) {
-                $this->nom = $nom;
-            }
-            $request = "UPDATE utilisateurs SET nom = '" . $this->nom . "',prenom = '" . $this->prenom . "', login = '" . $this->login . "',mail = '" . $this->mail . "'WHERE id = " . $this->id . "";
-            //var_dump($request);
-            $query = mysqli_query($this->connexion, $request);
-            //var_dump($query);
         } else {
-            return false;
+            $this->lastmessage = 'Vieux mot de passe erroné';
         }
     }
+
     public function disconnect()
     {
-        $this->id = NULL;
-        $this->nom = NULL;
-        $this->prenom = NULL;
-        $this->login = NULL;
-        $this->mail = NULL;
-        $this->permissions = NULL;
+        session_destroy();
+        //('location:index');
     }
-    public function getid()
+
+    public function getlastmessage()
     {
-        return $this->id;
-    }
-    public function isConnected()
-    {
-        if ($this->id != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->lastmessage;
     }
 
     public function getlogin()
     {
         return $this->login;
     }
-    public function getperm()
+
+    public function getmail()
     {
-        return $this->permissions;
+        return $this->mail;
+    }
+
+    public function getid()
+    {
+        return $this->id;
     }
 }

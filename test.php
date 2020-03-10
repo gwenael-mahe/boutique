@@ -7,7 +7,7 @@ include 'class/affichage.php';
 session_start();
 echo '<h1>Page de Test</h1>';
 
-
+session_destroy();
 // $affi = new affichage();
 // $affi->panier(1);
 // $affi->product(1);
