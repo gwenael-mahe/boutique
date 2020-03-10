@@ -63,6 +63,7 @@ class achat
     public function resetcart($iduser){
         $request = "DELETE FROM panier WHERE id_user = $iduser";
         $query = mysqli_query($this->bdd,$request);
+        return true;
     }
 }
     

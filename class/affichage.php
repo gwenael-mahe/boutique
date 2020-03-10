@@ -113,7 +113,7 @@ class affichage{
         if(!empty($fetch)){
             ?>
             <section>
-                <table id="tablepanier">
+                <table class="blueTable">
                     <thead>
                         <tr>
                             <td></td>

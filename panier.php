@@ -8,6 +8,7 @@ include 'class/achat.php';
 session_start();
 
 $affichage = new affichage();
+$_SESSION['id'] = 1;
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +23,16 @@ $affichage = new affichage();
 <body>
     <?php include 'include/header.php' ?>
 
-    <main>
-
+    <main id="mainpanier">
+    <?php 
+        $affichage->panier($_SESSION['id']);
+        if($affichage->panier($_SESSION['id']) != false){
+            ?>
+                <a href="validation_panier.php">Valider votre panier</a>
+            <?php
+        }
+    ?>
+    
     </main>
 
     <?php include 'include/footer.php' ?>
