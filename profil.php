@@ -95,7 +95,6 @@ if (isset($_GET['recherche'])) {
                     <li> <a href='categorie.php'> Gérer les catégories </a> </li>
                     <li> <a href='sous_categorie.php'> Gérer les sous-catégories </a> </li>
                     <li> <a href='produit.php'> Gérer les produits </a> </li>
-                    <li> <a href='#'> Gérer les différentes pages </a> </li>
                 </ul>
 
             </section>

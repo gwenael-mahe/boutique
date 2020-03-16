@@ -427,7 +427,10 @@ class affichage
         if (!empty($produit)) {
             foreach ($cat as $infos_cat) {
                 if ($infos_cat['id'] == $_GET['idcat']) { ?>
-                    <h1> <?php echo $infos_cat['nom']; ?> </h1>
+                    <div id='titre'>
+                        <span> <a href='boutique.php?idpage=1'> Boutique > </a> </span>
+                        <h1> <?php echo $infos_cat['nom']; ?> </h1>
+                    </div>
         <?php }
             }
         } ?>
@@ -453,13 +456,18 @@ class affichage
 
     // ----- sous-catégorie ----- //
 
-    public function usersouscat($produit, $souscat)
+    public function usersouscat($produit, $souscat, $cat)
     {
         if (!empty($produit)) {
-            foreach ($souscat as $infos_souscat) {
-                if ($infos_souscat['id'] == $_GET['idsouscat']) { ?>
-                    <h1> <?php echo $infos_souscat['nom']; ?> </h1>
+            foreach ($cat as $infos_cat) {
+                foreach ($souscat as $infos_souscat) {
+                    if ($infos_souscat['id'] == $_GET['idsouscat'] && $infos_cat['id'] == $infos_souscat['id_categorie']) { ?>
+                        <div id='titre'>
+                            <span><a href='boutique.php?idpage=1'> Boutique </a> > <a href='categorie.php?idcat=<?php echo $infos_souscat['id_categorie'] ?>'> <?php echo $infos_cat['nom'] . ' > '; ?> </a> </span>
+                            <h1> <?php echo $infos_souscat['nom']; ?> </h1>
+                        </div>
             <?php }
+                }
             } ?>
             <article>
                 <?php
