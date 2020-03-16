@@ -3,12 +3,12 @@
 include 'class/bdd.php';
 include 'class/affichage.php';
 include 'class/achat.php';
+include 'class/admin.php';
 
 
 session_start();
 
 $affichage = new affichage();
-$_SESSION['id'] = 1;
 ?>
 
 <!DOCTYPE html>
