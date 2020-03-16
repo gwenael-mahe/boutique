@@ -1,6 +1,7 @@
     <footer>
 
-        <aside> Merci d'être aussi nombreux à nous suivre ! Facebook / instagram / twitter </aside>
+        <aside> Merci d'être aussi nombreux à nous suivre ! <div><img src='img/logo/facebook.png' /><img src='img/logo/instagram.png' /><img src='img/logo/twitter.png' /></div>
+        </aside>
 
         <section class='footer_section'>
             <article> <a href='index.php'> Accueil </a> </article>
