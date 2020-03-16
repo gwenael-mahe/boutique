@@ -1,6 +1,7 @@
 <?php
 
-class affichage{
+class affichage
+{
 
     private $admin;
     private $bdd;
@@ -14,107 +15,113 @@ class affichage{
         $this->admin = $admin;
     }
     //-------------------- page produit --------------------//
-    public function product($id){
+    public function product($id)
+    {
         $request = "SELECT id,nom,prix,descriptionup,descriptiondown,img FROM product WHERE id = $id";
-        $query = mysqli_query($this->bdd,$request);
+        $query = mysqli_query($this->bdd, $request);
         $fetch = mysqli_fetch_assoc($query);
         // var_dump($fetch);
-        if(!empty($fetch)){
-            ?>
-                <section class="sectionproduit">
-                    <article class="articleproduitup">
-                        <img src="<?php echo $fetch['img'] ?>" class="imgproduct">
-                        <p><?php echo $fetch['descriptionup'] ?></p>
-                    </article>
-                    <article class="articleproduitdown">
-                        <div class="divproduitup">
-                            <p><?php echo $fetch['descriptiondown'] ?></p>
-                            <p><?php echo $fetch['prix'] ?>€</p>
-                        </div>
-                        <div class="divproduitdown">
-                            <?php
-                            if(isset($_SESSION['login'])){
-                                ?>
-                                <form action="" method="post" class="formproduit">
+        if (!empty($fetch)) {
+?>
+            <section class="sectionproduit">
+                <article class="articleproduitup">
+                    <img src="<?php echo $fetch['img'] ?>" class="imgproduct">
+                    <p><?php echo $fetch['descriptionup'] ?></p>
+                </article>
+                <article class="articleproduitdown">
+                    <div class="divproduitup">
+                        <p><?php echo $fetch['descriptiondown'] ?></p>
+                        <p><?php echo $fetch['prix'] ?>€</p>
+                    </div>
+                    <div class="divproduitdown">
+                        <?php
+                        if (isset($_SESSION['login'])) {
+                        ?>
+                            <form action="" method="post" class="formproduit">
                                 <input type="number" name="quantity">
                                 <input type="image" src="img/product/addtocart.png" name="add" value="submit" class="submitimg">
                             </form>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </article>
-                    
-                </section>
-            <?php
-        }
-        else
-        return false;
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </article>
+
+            </section>
+        <?php
+        } else
+            return false;
     }
-    public function formmessage(){
+    public function formmessage()
+    {
         ?>
-            <section>
-                <form action="" method="post">
-                    <label>Note</label>
-                    <select name="note">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+        <section>
+            <form action="" method="post">
+                <label>Note</label>
+                <select name="note">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                     <label>Votre avis:</label>
                     <input type="text" name="com">
                     <input type="submit" value="envoyer" name="send">
-                </form>
-            </section>
+            </form>
+        </section>
         <?php
     }
-    public function addcommentaire($iduser,$com,$idproduct,$avis){
+    public function addcommentaire($iduser, $com, $idproduct, $avis)
+    {
         $request = "INSERT INTO commentaires(id_user,message,date,id_product) VALUES ($iduser,'$com',NOW(),$idproduct)";
-        $query = mysqli_query($this->bdd,$request);
+        $query = mysqli_query($this->bdd, $request);
         $requestavis = "INSERT INTO `avis`(`id_user`, `id_produit`, `id_message`, `notation`) VALUES ($iduser,$idproduct,LAST_INSERT_ID(),$avis)";
-        $queryavis = mysqli_query($this->bdd,$requestavis);
+        $queryavis = mysqli_query($this->bdd, $requestavis);
     }
-    public function notation($id){
+    public function notation($id)
+    {
         $request = "SELECT AVG(notation) FROM avis WHERE id_produit = $id";
-        $query = mysqli_query($this->bdd,$request);
+        $query = mysqli_query($this->bdd, $request);
         $fetch = mysqli_fetch_all($query);
         //var_dump($fetch);
-        if(!empty($fetch)){
-            ?>
-                <section id="notation"><p>Avis utilisateurs : <?=$fetch[0][0] ?></p><img src="img/product/etoile.png" class="etoile"></section>
+        if (!empty($fetch)) {
+        ?>
+            <section id="notation">
+                <p>Avis utilisateurs : <?= $fetch[0][0] ?></p><img src="img/product/etoile.png" class="etoile">
+            </section>
             <?php
         }
     }
-    public function commentaire($id){
+    public function commentaire($id)
+    {
         $request = "SELECT commentaires.message,commentaires.date,user.login,avis.notation FROM commentaires INNER JOIN user ON commentaires.id_user = user.id INNER JOIN avis ON commentaires.id = avis.id_message WHERE commentaires.id_product = $id";
-        $query = mysqli_query($this->bdd,$request);
+        $query = mysqli_query($this->bdd, $request);
         $fetch = mysqli_fetch_all($query);
-        if(!empty($fetch)){
-            foreach($fetch as list($com,$date,$login,$avis)){
-                ?>
-                    <section class="sectionnotation">
-                        <article class="articlenotationup">
-                            <p>Par <?php echo $login?></p>
-                            <p>Le <?php echo $date ?></p>
-                        </article>
-                        <article class="articlenotationdown">
-                            <p><?php echo $com ?></p>
-                            <p><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
-                        </article>
-                    </section>
-                <?php
+        if (!empty($fetch)) {
+            foreach ($fetch as list($com, $date, $login, $avis)) {
+            ?>
+                <section class="sectionnotation">
+                    <article class="articlenotationup">
+                        <p>Par <?php echo $login ?></p>
+                        <p>Le <?php echo $date ?></p>
+                    </article>
+                    <article class="articlenotationdown">
+                        <p><?php echo $com ?></p>
+                        <p><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
+                    </article>
+                </section>
+            <?php
             }
-        }
-        else
-        return false;
+        } else
+            return false;
     }
     //-------------------- page panier --------------------//
-    public function panier($iduser){
+    public function panier($iduser)
+    {
         $request = "SELECT product.img,product.nom,product.prix,panier.quantite,panier.id FROM panier INNER JOIN product ON panier.id_product = product.id WHERE panier.id_user = $iduser";
-        $query = mysqli_query($this->bdd,$request);
+        $query = mysqli_query($this->bdd, $request);
         $fetch = mysqli_fetch_all($query);
-        if(!empty($fetch)){
+        if (!empty($fetch)) {
             ?>
             <section>
                 <table class="blueTable">
@@ -128,26 +135,25 @@ class affichage{
                         </tr>
                     </thead>
                     <tbody>
-            <?php
-            foreach($fetch as list($img,$nom,$prix,$quantity,$id)){
-                ?>
-                    <tr>
-                        <td><img src="<?php echo $img ?>" class="imgpanier"></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $prix ?></td>
-                        <td><?php echo $quantity ?></td>
-                        <td><a href="include/deletepanier.php?id=<?php echo $id ?>"><img src="img/product/delete.png" class="deletepanier"></a></td>
-                    </tr>
-                <?php
-            }
-            ?>
+                        <?php
+                        foreach ($fetch as list($img, $nom, $prix, $quantity, $id)) {
+                        ?>
+                            <tr>
+                                <td><img src="<?php echo $img ?>" class="imgpanier"></td>
+                                <td><?php echo $nom ?></td>
+                                <td><?php echo $prix ?></td>
+                                <td><?php echo $quantity ?></td>
+                                <td><a href="include/deletepanier.php?id=<?php echo $id ?>"><img src="img/product/delete.png" class="deletepanier"></a></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </section>
-            <?php
-        }
-        else
-        return false;
+        <?php
+        } else
+            return false;
     }
     // --------- Header --------- //
 
@@ -359,11 +365,37 @@ class affichage{
                     <input type='submit' value='Modifier' name='modifierproduit' />
                     <a href="include/delete.php?idproduit=<?php echo $infos_produit['id']; ?>">X</a>
                 </form>
-                <?php }
+            <?php }
         }
     }
 
     // ------------- Affichage user ---------------- //
+
+    // ----- Liste des catégories ----- //
+
+    public function affiche_cat($cat)
+    {
+        if (!empty($cat)) { ?>
+            <h1> Nos catégories </h1>
+        <?php } ?>
+        <article>
+            <?php
+            foreach ($cat as $infos_cat) { ?>
+                <div>
+                    <a class="page" href='categorie.php?idcat=<?php echo $infos_cat['id']; ?>'>
+                        <figure>
+                            <img src='<?php echo $infos_cat['img']; ?>' alt='img_souscat' />
+                            <figcaption> <?php echo $infos_cat['nom']; ?> </figcaption>
+                        </figure>
+                    </a>
+                    <p> <?php echo $infos_cat['description']; ?> </p>
+                </div>
+            <?php
+            } ?>
+        </article>
+        <?php
+    }
+
 
     // ----- catégorie ----- //
 

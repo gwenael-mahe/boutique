@@ -8,7 +8,7 @@ session_start();
 $affichage = new affichage();
 
 if (isset($_GET['recherche'])) {
-header('location:boutique.php?recherche='.$_GET['recherche']);
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
 }
 
 ?>
@@ -27,6 +27,13 @@ header('location:boutique.php?recherche='.$_GET['recherche']);
     <?php include 'include/header.php' ?>
 
     <main>
+
+        <section id='categorie'> 
+
+            <?php $affichage->affiche_cat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
+
+        </section>
+
 
     </main>
 
