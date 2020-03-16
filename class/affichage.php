@@ -36,8 +36,14 @@ class affichage{
                             if(isset($_SESSION['login'])){
                                 ?>
                                 <form action="" method="post" class="formproduit">
-                                <input type="number" name="quantity">
-                                <input type="image" src="img/product/addtocart.png" name="add" value="submit" class="submitimg">
+                                <label>Quantité</label>
+                                <select name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                <input type="image" src="img/product/addtocart.png" name="addtocart" value="submit" class="submitimg">
                             </form>
                             <?php
                             }
