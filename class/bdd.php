@@ -10,6 +10,7 @@ class bdd
     private $produitadmin;
     private $nombreDePages;
     private $page;
+    private $nouveaute;
     private $recherche_produit;
 
     public function __construct()
@@ -25,6 +26,7 @@ class bdd
         }
 
         $this->checkcategorie();
+        $this->nouveaute();
         $this->checksouscategorie();
         $this->checkproduitadmin();
         if (isset($_GET['idpage'])) {
@@ -61,6 +63,13 @@ class bdd
         $query_produitadmin = mysqli_query($this->connexion, "SELECT * FROM product");
         $result_produitadmin = mysqli_fetch_all($query_produitadmin, MYSQLI_ASSOC);
         $this->produitadmin = $result_produitadmin;
+    }
+
+    public function nouveaute()
+    {
+        $query_nouveaute = mysqli_query($this->connexion, "SELECT * FROM product ORDER BY id DESC LIMIT 3");
+        $result_nouveaute = mysqli_fetch_all($query_nouveaute, MYSQLI_ASSOC);
+        $this->nouveaute = $result_nouveaute;
     }
 
     public function checkproduit($nbproduit, $idpage)

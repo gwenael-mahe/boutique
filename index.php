@@ -28,12 +28,17 @@ if (isset($_GET['recherche'])) {
 
     <main>
 
-        <section id='categorie'> 
+        <section class='categorie' id='categorie_user'>
 
             <?php $affichage->affiche_cat($affichage->get('admin')->get('bdd')->get('categorie')); ?>
 
         </section>
 
+        <section class='categorie' id='categorie_user'>
+
+            <?php $affichage->affiche_nouveaute($affichage->get('admin')->get('bdd')->get('nouveaute')); ?>
+
+        </section>
 
     </main>
 

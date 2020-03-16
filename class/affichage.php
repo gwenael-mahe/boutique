@@ -381,8 +381,8 @@ class affichage
         <article>
             <?php
             foreach ($cat as $infos_cat) { ?>
-                <div>
-                    <a class="page" href='categorie.php?idcat=<?php echo $infos_cat['id']; ?>'>
+                <div id='accueil'>
+                    <a href='categorie.php?idcat=<?php echo $infos_cat['id']; ?>'>
                         <figure>
                             <img src='<?php echo $infos_cat['img']; ?>' alt='img_souscat' />
                             <figcaption> <?php echo $infos_cat['nom']; ?> </figcaption>
@@ -396,6 +396,29 @@ class affichage
         <?php
     }
 
+    public function affiche_nouveaute($produit)
+    {
+        if (!empty($produit)) { ?>
+            <h1> Nos nouveautés </h1>
+        <?php } ?>
+        <article>
+            <?php
+            foreach ($produit as $infos_produit) { ?>
+                <div id='accueil'>
+                    <a href='produit.php?id=<?php echo $infos_produit['id']; ?>'>
+                        <figure>
+                            <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
+                            <figcaption> <?php echo $infos_produit['nom']; ?> </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            <?php
+            } ?>
+        </article>
+        <?php
+    }
+
+    // ----- Liste des catégories ----- //
 
     // ----- catégorie ----- //
 

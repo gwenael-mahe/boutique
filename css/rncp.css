@@ -399,6 +399,10 @@ table.blueTable tfoot .links a {
     align-items: center;
 }
 
+#categorie_user figure{
+    text-align: center;
+}
+
 #categorie_user article {
     display: flex;
     flex-direction: row;
@@ -407,6 +411,16 @@ table.blueTable tfoot .links a {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+}
+
+#categorie_user #accueil{
+    display: flex;
+    flex-basis: 20%;
+    height: 55%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: solid black 2px;
 }
 
 #categorie_user div {
