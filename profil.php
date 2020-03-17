@@ -4,11 +4,13 @@ include 'class/bdd.php';
 include 'class/user.php';
 include 'class/admin.php';
 include 'class/affichage.php';
+include "class/achat.php";
 
 session_start();
 
 $user = new user();
 $affichage = new affichage();
+$achat = new achat();
 
 if (isset($_POST['modification'])) {
     $user->profil($_POST['id'], $_POST['old_password'], $_POST['login'], $_POST['email'], $_POST['password']);
@@ -82,6 +84,9 @@ if (isset($_GET['recherche'])) {
             <section class='profil'>
 
                 <h1> Mon panier </h1>
+                <article>
+                    <p>Vous avez actuellement <?php echo $achat->countarticle($_SESSION['id']) ?> article dans votre panier</p>
+                </article>
 
             </section>
 

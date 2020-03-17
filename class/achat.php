@@ -20,7 +20,7 @@ class achat
     }
     public function countarticle($iduser){
         $request = "SELECT COUNT(id) FROM panier WHERE id_user = $iduser";
-        $query = mysqli_quey($request);
+        $query = mysqli_query($this->bdd,$request);
         $fetch = mysqli_fetch_all($query);
         return $fetch[0][0];
     }
