@@ -21,23 +21,23 @@ class affichage
         $query = mysqli_query($this->bdd, $request);
         $fetch = mysqli_fetch_assoc($query);
         // var_dump($fetch);
-        if(!empty($fetch)){
-            ?>
-                <section class="sectionproduit">
-                    <article class="articleproduitup">
-                        <img src="<?php echo $fetch['img'] ?>" class="imgproduct">
-                        <p><?php echo $fetch['descriptionup'] ?></p>
-                    </article>
-                    <article class="articleproduitdown">
-                        <div class="divproduitup">
-                            <p><?php echo $fetch['descriptiondown'] ?></p>
-                            <p><?php echo $fetch['prix'] ?>€</p>
-                        </div>
-                        <div class="divproduitdown">
-                            <?php
-                            if(isset($_SESSION['login'])){
-                                ?>
-                                <form action="" method="post" class="formproduit">
+        if (!empty($fetch)) {
+?>
+            <section class="sectionproduit">
+                <article class="articleproduitup">
+                    <img src="<?php echo $fetch['img'] ?>" class="imgproduct">
+                    <p><?php echo $fetch['descriptionup'] ?></p>
+                </article>
+                <article class="articleproduitdown">
+                    <div class="divproduitup">
+                        <p><?php echo $fetch['descriptiondown'] ?></p>
+                        <p><?php echo $fetch['prix'] ?>€</p>
+                    </div>
+                    <div class="divproduitdown">
+                        <?php
+                        if (isset($_SESSION['login'])) {
+                        ?>
+                            <form action="" method="post" class="formproduit">
                                 <label>Quantité</label>
                                 <select name="quantity">
                                     <option value="1">1</option>
@@ -45,7 +45,7 @@ class affichage
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                <input type="image" src="img/product/addtocart.png" name="addtocart" value="submit" class="submitimg">
+                                    <input type="image" src="img/product/addtocart.png" name="addtocart" value="submit" class="submitimg">
                             </form>
                         <?php
                         }
@@ -61,15 +61,15 @@ class affichage
     public function formmessage()
     {
         ?>
-            <section>
-                <form action="" method="post">
-                    <label>Note</label>
-                    <select name="note">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+        <section>
+            <form action="" method="post">
+                <label>Note</label>
+                <select name="note">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                     <label>Votre avis:</label>
                     <input type="text" name="com">
                     <input type="submit" value="envoyer" name="send">
@@ -188,6 +188,34 @@ class affichage
     }
 
     // ------------- Affichage admin ---------------- //
+
+    // ----- page ----- //
+
+    public function adminpage($page)
+    {
+        if (!empty($page)) {
+            foreach ($page as $page_infos) { ?>
+                <form id='nop' action='' method='POST' enctype="multipart/form-data">
+                    <div>
+                        <img src='<?php echo $page_infos['img'] ?>' alt='img_page' />
+                        <input type="file" name="img" />
+                    </div>
+                    <input type='hidden' name='id' value='<?php echo $page_infos['id']; ?>' />
+                    <div>
+                        <label> Titre </label>
+                        <input type='texte' name='titre' value='<?php echo $page_infos['titre']; ?>' />
+                    </div>
+                    <div>
+                        <label> Description de la page </label>
+                        <textarea rows="5" cols="30" name='description'> <?php echo $page_infos['description']; ?> </textarea>
+                    </div>
+                    <input type='submit' value='Modifier' name='modifierpage' />
+                </form>
+            <?php
+            }
+        }
+    }
+
 
     // ----- catégorie ----- //
 

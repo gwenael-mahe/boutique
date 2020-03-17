@@ -40,6 +40,7 @@
                 <li><a href='produit.php'> Gérer les produits </a></li>
                 <li><a href='categorie.php'> Gérer les catégorie </a></li>
                 <li><a href='sous_categorie.php'> Gérer les sous-catégorie </a></li>
+                <li><a href='page.php'> Gérer le header </a></li>
                 <li><a href='include/delete.php?iduser=<?php echo $_SESSION['id']; ?>'> Déconnexion </a></li>
             </ul>
             </li>

@@ -15,6 +15,49 @@ class admin
         $this->bdd = $bdd;
     }
 
+    // Méthode modif page
+
+    public function majpage($majtitre, $majdescription)
+    {
+        $recupidpage = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM basicpage WHERE id_page = 1");
+        $idpage = mysqli_fetch_row($recupidpage);
+
+        $this->traitementimgpage($idpage[0]);
+
+        if ($this->filesimg != NULL) {
+            $query_majpage = mysqli_query($this->get('bdd')->getco(), "UPDATE basicpage SET titre = '" . $majtitre . "' , description = '" . $majdescription . "',img = '" . $this->filesimg . "' WHERE id = '" . $idpage[0]. "'");
+        } else {
+            $query_majpage = mysqli_query($this->get('bdd')->getco(), "UPDATE basicpage SET titre = '" . $majtitre . "' , description = '" . $majdescription . "' WHERE id = '" . $idpage[0] . "'");
+        }
+    }
+
+    public function traitementimgpage($id)
+    {
+        if (!empty($_FILES["img"]["name"])) {
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo(basename($_FILES["img"]["name"]), PATHINFO_EXTENSION));
+            $target_dir = "img/logo/";
+            $target_file = $target_dir . $id . '.' . $imageFileType;
+            foreach (scandir($target_dir) as $files) {
+                if (pathinfo(basename($files), PATHINFO_FILENAME) == $id) {
+                    unlink($target_dir . $files);
+                }
+            }
+            $check = getimagesize($_FILES["img"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $uploadOk = 0;
+            }
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                $uploadOk = 0;
+            }
+            if ($uploadOk == 1 && move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
+                $this->filesimg = $target_file;
+            }
+        }
+    }
+
     // Méthode ajout catégorie 
 
     public function ajoutcategorie($newcat, $description)
@@ -168,7 +211,7 @@ class admin
 
     // Méthode ajout produit
 
-    public function ajoutproduit($newproduit, $prix, $descriptionup, $descriptiondown,$souscat)
+    public function ajoutproduit($newproduit, $prix, $descriptionup, $descriptiondown, $souscat)
     {
         $recupidsouscat = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM sous_categorie WHERE nom = '" . $souscat . "'");
         $idsouscat = mysqli_fetch_row($recupidsouscat);
@@ -191,8 +234,8 @@ class admin
             $query_ajoutproduit_img = mysqli_query($this->get('bdd')->getco(), "UPDATE product SET img = '" . $this->filesimg . "' WHERE id = '" . $idnewproduit . "'");
         }
     }
-    
-    public function majproduit($majproduit, $majprix, $majdescriptionup, $majdescriptiondown,$souscat,$idproduit)
+
+    public function majproduit($majproduit, $majprix, $majdescriptionup, $majdescriptiondown, $souscat, $idproduit)
     {
         $recupidcat = mysqli_query($this->get('bdd')->getco(), "SELECT id FROM sous_categorie WHERE nom = '" . $souscat . "'");
         $idsouscat = mysqli_fetch_row($recupidcat);
@@ -200,9 +243,9 @@ class admin
         $this->traitementimgproduit($idproduit);
 
         if ($this->filesimg != NULL) {
-            $query_majproduit = mysqli_query($this->get('bdd')->getco(), "UPDATE product SET nom = '" . $majproduit . "' , prix = '" . $majprix ."', descriptionup = '" . $majdescriptionup . "', descriptiondown = '" . $majdescriptiondown . "', id_souscat = '" . $idsouscat[0] . "',img = '" . $this->filesimg . "' WHERE id = '" . $idproduit . "'");
+            $query_majproduit = mysqli_query($this->get('bdd')->getco(), "UPDATE product SET nom = '" . $majproduit . "' , prix = '" . $majprix . "', descriptionup = '" . $majdescriptionup . "', descriptiondown = '" . $majdescriptiondown . "', id_souscat = '" . $idsouscat[0] . "',img = '" . $this->filesimg . "' WHERE id = '" . $idproduit . "'");
         } else {
-            $query_majproduit = mysqli_query($this->get('bdd')->getco(), "UPDATE product SET nom = '" . $majproduit . "' , prix = '" . $majprix ."', descriptionup = '" . $majdescriptionup . "', descriptiondown = '" . $majdescriptiondown . "', id_souscat = '" . $idsouscat[0] . "' WHERE id = '" . $idproduit . "'");
+            $query_majproduit = mysqli_query($this->get('bdd')->getco(), "UPDATE product SET nom = '" . $majproduit . "' , prix = '" . $majprix . "', descriptionup = '" . $majdescriptionup . "', descriptiondown = '" . $majdescriptiondown . "', id_souscat = '" . $idsouscat[0] . "' WHERE id = '" . $idproduit . "'");
         }
     }
 
