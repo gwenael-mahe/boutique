@@ -174,9 +174,6 @@ nav li.princ:hover {
     display: flex;
     flex-direction: column;
 }
-.submitimg{
-    width: 5%;
-}
 #notation{
     display: flex;
     background-color: burlywood;

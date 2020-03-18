@@ -35,7 +35,7 @@ class affichage{
                             <?php
                             if(isset($_SESSION['login'])){
                                 ?>
-                                <form action="" method="post" class="formproduit">
+                                <form method="post" class="formproduit">
                                 <label>Quantité</label>
                                 <select name="quantity">
                                     <option value="1">1</option>
@@ -43,7 +43,7 @@ class affichage{
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                <input type="image" src="img/product/addtocart.png" name="addtocart" value="submit" class="submitimg">
+                                <input type="submit" value="addtocart" name="addtocart" class="submitbutton">
                             </form>
                             <?php
                             }
@@ -54,8 +54,10 @@ class affichage{
                 </section>
             <?php
         }
-        else
-        return false;
+        else{
+            return false;
+        }
+        
     }
     public function formmessage(){
         ?>
@@ -76,7 +78,8 @@ class affichage{
         <?php
     }
     public function addcommentaire($iduser,$com,$idproduct,$avis){
-        $request = "INSERT INTO commentaires(id_user,message,date,id_product) VALUES ($iduser,'$com',NOW(),$idproduct)";
+        $request = "INSERT INTO commentaires(id_user,message,date,id_product) VALUES ($iduser,\"" . $com . "\",NOW(),$idproduct)";
+        var_dump($request);
         $query = mysqli_query($this->bdd,$request);
         $requestavis = "INSERT INTO `avis`(`id_user`, `id_produit`, `id_message`, `notation`) VALUES ($iduser,$idproduct,LAST_INSERT_ID(),$avis)";
         $queryavis = mysqli_query($this->bdd,$requestavis);
@@ -475,6 +478,37 @@ class affichage{
     public function get($var)
     {
         return $this->$var;
+    }
+    /* Profil */
+
+    public function historique($id){
+        $request = "SELECT id,date,prix FROM achat WHERE id_user = $id";
+        $query = mysqli_query($this->bdd,$request);
+        $fecth = mysqli_fetch_all($query);
+        if(!empty($fecth)){
+            foreach($fecth as list($id,$date,$prix)){
+                ?>
+                <article>
+                    <p>Achat du <?=$date ?> pour <?=$prix ?>€ veuillez cliquer <a href="historique.php?id=<?=$id ?>">ici</a> pour voir le détail.</p>
+                </article>
+                <?php
+            }
+        }
+    }
+    /* historique */
+
+    public function historiquedetail($id){
+        $request = "SELECT achat_product.quantite, product.nom, product.prix, product.img FROM achat_product INNER JOIN product ON achat_product.id_produit = product.id WHERE achat_product.id_achat = $id";
+        $query = mysqli_query($this->bdd,$request);
+        $fecth = mysqli_fetch_all($query);
+        ?><article><?php
+            foreach($fecth as list($quantity,$name,$price,$img)){
+                ?>
+                <p><img src="<?=$img ?>" class="imghisto"><?=$name ?> pour <?=$price ?>€ x<?=$quantity ?></p><?php
+            }
+            ?>
+        </article>
+        <?php
     }
 }
 
