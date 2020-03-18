@@ -43,7 +43,7 @@ class affichage{
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                <input type="submit" value="addtocart" name="addtocart" class="submitbutton">
+                                <input type="submit" value="addtocart" name="addtocart">
                             </form>
                             <?php
                             }
@@ -61,7 +61,7 @@ class affichage{
     }
     public function formmessage(){
         ?>
-            <section>
+            <section id="formproduit">
                 <form action="" method="post">
                     <label>Note</label>
                     <select name="note">
@@ -109,7 +109,7 @@ class affichage{
                         </article>
                         <article class="articlenotationdown">
                             <p><?php echo $com ?></p>
-                            <p><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
+                            <p class="pnot"><?php echo $avis ?><img src="img/product/etoile.png" class="etoile"></p>
                         </article>
                     </section>
                 <?php
@@ -177,7 +177,7 @@ class affichage{
 
             <form action='' method='GET'>
                 <input type='search' name='recherche' placeholder="Recherche..." />
-                <input type='submit' value='Rechercher' />
+                <input type='submit' value='Rechercher'/>
             </form>
 
         </section>
@@ -206,7 +206,7 @@ class affichage{
                         <label> Description de la catégorie </label>
                         <textarea rows="5" cols="30" name='description'> <?php echo $infos_cat['description']; ?> </textarea>
                     </div>
-                    <input type='submit' value='Modifier' name='modifiercat' />
+                    <input type='submit' value='Modifier' name='modifiercat'/>
                     <a href="include/delete.php?idcat=<?php echo $infos_cat['id']; ?>">X</a>
                 </form>
         <?php }
@@ -226,7 +226,7 @@ class affichage{
                 <label> Description de la catégorie </label>
                 <textarea rows="5" cols="30" name='description'> </textarea>
             </div>
-            <input type="submit" name='ajoutercat' value='Ajouter' />
+            <input type="submit" name='ajoutercat' value='Ajouter'/>
         </form>
         <?php }
 
@@ -260,7 +260,7 @@ class affichage{
                         <label> Description de la sous-catégorie </label>
                         <textarea rows="5" cols="30" name='description'> <?php echo $infos_souscat['description']; ?> </textarea>
                     </div>
-                    <input type='submit' value='Modifier' name='modifiersouscat' />
+                    <input type='submit' value='Modifier' name='modifiersouscat'/>
                     <a href="include/delete.php?idsouscat=<?php echo $infos_souscat['id']; ?>">X</a>
                 </form>
         <?php }
@@ -288,7 +288,7 @@ class affichage{
                 <textarea rows="5" cols="30" name='description'> </textarea>
             </div>
 
-            <input type="submit" name='ajoutersouscat' value='Ajouter' />
+            <input type="submit" name='ajoutersouscat' value='Ajouter'/>
         </form>
     <?php
     }
@@ -323,7 +323,7 @@ class affichage{
                 <label> Description 2 </label>
                 <textarea rows="5" cols="30" name='descriptiondown'> </textarea>
             </div>
-            <input type="submit" name='ajouterproduit' value='Ajouter' />
+            <input type="submit" name='ajouterproduit' value='Ajouter'/>
         </form>
         <?php }
 
@@ -365,7 +365,7 @@ class affichage{
 
                     <input type='hidden' name='id' value='<?php echo $infos_produit['id']; ?>' />
 
-                    <input type='submit' value='Modifier' name='modifierproduit' />
+                    <input type='submit' value='Modifier' name='modifierproduit'/>
                     <a href="include/delete.php?idproduit=<?php echo $infos_produit['id']; ?>">X</a>
                 </form>
                 <?php }
@@ -395,7 +395,7 @@ class affichage{
                                 <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
                                 <p> <?php echo $infos_produit['nom']; ?></p>
                                 <p> Prix : <?php echo $infos_produit['prix']; ?> €</p>
-                                <a class="page" href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit</a>
+                                <a href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit</a>
                             </div>
             <?php }
                     }
@@ -422,8 +422,8 @@ class affichage{
                         <div>
                             <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
                             <p> <?php echo $infos_produit['nom']; ?></p>
-                            <p> <?php echo $infos_produit['prix']; ?></p>
-                            <a class="page" href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
+                            <p> <?php echo $infos_produit['prix']; ?>€</p>
+                            <a href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
                         </div>
                 <?php }
                 } ?>
@@ -442,8 +442,8 @@ class affichage{
                     <div>
                         <img src='<?php echo $infos_produit['img']; ?>' alt='img_souscat' />
                         <p> <?php echo $infos_produit['nom']; ?></p>
-                        <p> <?php echo $infos_produit['prix']; ?></p>
-                        <a class="page" href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
+                        <p> <?php echo $infos_produit['prix']; ?>€</p>
+                        <a href='produit.php?id=<?php echo $infos_produit['id']; ?>'> Voir le produit </a>
                     </div>
                 <?php }
                 ?>

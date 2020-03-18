@@ -57,7 +57,7 @@ if (isset($_GET['recherche']) && !empty($_GET['recherche'])) {
             <?php
             }
             for ($i = 1; $i <= $nombreDePages; $i++) { ?>
-                <a class='page' href="?idpage=<?php echo $i; ?>"><?php echo $i; ?>-</a>
+                <a href="?idpage=<?php echo $i; ?>"><?php echo $i; ?>-</a>
             <?php }
             if ($page < $nombreDePages) { ?>
                 <a href="?idpage=<?php echo $page + 1; ?>"> Page suivante </a>

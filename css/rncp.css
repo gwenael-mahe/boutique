@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
 /* HTML */
 
 html {
@@ -14,13 +16,24 @@ body {
     justify-content: space-around;
     flex-grow: 1;
     margin: 0;
+    font-family: 'Pacifico', cursive;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+  }
 /* Main */
 
 main {
@@ -29,7 +42,11 @@ main {
     flex-grow: 0.8;
     justify-content: space-evenly;
     align-items: center;
+    color: rgb(31, 31, 31);
+    background-image: url(../img/css/background.jpg);
+    background-position: fixed;
 }
+
 
 /* header */
 
@@ -38,8 +55,8 @@ header {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-between;
-    border: 2px solid black;
-    /* à retirer */
+    border: 2px solid rgb(0, 0, 0);
+    background-color: beige;
 }
 
 header section {
@@ -82,7 +99,7 @@ nav li {
     list-style-type: none;
     position: relative;
     width: 180px;
-    background: rgb(121, 121, 121);
+    background: rgb(199, 199, 178);
     padding: 10px;
     margin: 0px;
     z-index: 2;
@@ -143,7 +160,7 @@ nav li li:hover>a {
 }
 
 nav li.princ:hover {
-    background: rgb(121, 121, 121);
+    background: rgb(199, 199, 178);
     border-radius: 20px;
 }
 
@@ -151,6 +168,7 @@ nav li.princ:hover {
 
 #mainproduit{
     padding-left: 2%;
+    padding-right: 2%;
 }
 .sectionproduit{
     padding-top: 2%;
@@ -158,15 +176,14 @@ nav li.princ:hover {
     flex-direction: column;
 }
 .imgproduct{
-    width: 20%;
-    padding-right: 2%;
+    width: 20vw;
+    margin-right: 2%;
 }
 .articleproduitup{
-    background-color: aqua;
     display: flex;
 }
 .articleproduitdown{
-    background-color: bisque;
+    padding-left: 1%;
     display: flex;
     justify-content: space-between;
 }
@@ -176,16 +193,21 @@ nav li.princ:hover {
 }
 #notation{
     display: flex;
-    background-color: burlywood;
     align-items: center;
+    margin-top: 1%;
 }
 .etoile{
-    width: 2%;
+    width: 2vw;
 }
 .sectionnotation{
     display: flex;
-    background-color: cadetblue;
+    width: 70vw;
     flex-direction: column;
+    margin-top: 1%;
+    border-style: solid;
+    border-radius: 2px;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 .articlenotationup{
     display: flex;
@@ -195,7 +217,39 @@ nav li.princ:hover {
     display: flex;
     justify-content: space-between;
 }
+.pnot{
+    width: 10vw;
+}
+#formproduit{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+input,select {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background-color:#eae0c2;
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    outline: 0;
 
+}
+input:hover {
+	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+input:active {
+	position:relative;
+	top:1px;
+}
 /* Panier */
 #mainpanier{
     display: flex;
@@ -206,9 +260,9 @@ nav li.princ:hover {
     padding-bottom: 2%;
 }
 table.blueTable {
-    border: 1px solid #1C6EA4;
+    border: 1px solid beige;
     background-color: #EEEEEE;
-    width: 100%;
+    width: 50vw;
     text-align: left;
     border-collapse: collapse;
   }
@@ -223,10 +277,10 @@ table.blueTable {
     background: #D0E4F5;
   }
   table.blueTable thead {
-    background: #1C6EA4;
-    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: #f5f5dc;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ecece3 66%, beige 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ecece3 66%, beige 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ecece3 66%, beige 100%);
     border-bottom: 2px solid #444444;
   }
   table.blueTable thead th {
@@ -247,16 +301,16 @@ table.blueTable {
   }
   table.blueTable tfoot .links a{
     display: inline-block;
-    background: #1C6EA4;
+    background: beige;
     color: #FFFFFF;
     padding: 2px 8px;
     border-radius: 5px;
   }
 .imgpanier{
-    width: 5%;
+    width: 5vw;
 }
 .deletepanier{
-    width: 3%;
+    width: 3vw;
 }
 
 /* validation panier */
@@ -385,8 +439,8 @@ table.blueTable {
 
 #categorie_user div {
     display: flex;
-    flex-basis: 20%;
-    height: 45%;
+    flex-basis: 15%;
+    height: auto;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -433,7 +487,7 @@ footer {
     flex-grow: 0.1;
     justify-content: space-around;
     border: 2px solid black;
-    /* à retirer */
+    background-color: beige;
 }
 
 footer aside {
