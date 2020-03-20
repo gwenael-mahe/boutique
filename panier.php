@@ -29,6 +29,11 @@ $achat = new achat();
 
     <main id="mainpanier">
         <h1>Votre panier</h1>
+
+        <article>
+            <p>Vous avez actuellement <?php echo $achat->countarticle($_SESSION['id']) ?> article dans votre panier</p>
+        </article>
+        
         <?php
         $affichage->panier($_SESSION['id']);
         if ($achat->countarticle($_SESSION['id']) != 0) {
