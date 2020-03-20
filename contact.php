@@ -7,6 +7,10 @@ session_start();
 
 $affichage = new affichage();
 
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
+}
+
 ?>
 
 <!DOCTYPE html>

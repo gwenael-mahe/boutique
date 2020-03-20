@@ -7,12 +7,17 @@ include 'class/admin.php';
 
 session_start();
 
+$affichage = new affichage();
+$achat = new achat();
+
 if (!isset($_SESSION['id'])) {
     header('location:index.php');
 }
 
-$affichage = new affichage();
-$achat = new achat();
+if (isset($_GET['recherche'])) {
+    header('location:boutique.php?recherche=' . $_GET['recherche']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +38,7 @@ $achat = new achat();
         <article>
             <p>Vous avez actuellement <?php echo $achat->countarticle($_SESSION['id']) ?> article dans votre panier</p>
         </article>
-        
+
         <?php
         $affichage->panier($_SESSION['id']);
         if ($achat->countarticle($_SESSION['id']) != 0) {
