@@ -370,7 +370,7 @@ table.blueTable tfoot .links a {
     width: 25%;
     justify-content: space-evenly;
     align-items: center;
-    border: solid 2px black;
+    border: solid 2px rgb(255, 174, 0);
 }
 
 .module_co a {
