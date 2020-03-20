@@ -24,10 +24,12 @@ $affichage = new affichage();
     <?php include 'include/header.php' ?>
 
     <main>
-    <?php 
+
+        <h1> Historique d'achat </h1>
+        <?php
         $affichage->historiquedetail($_GET['id']);
-    ?>
-    
+        ?>
+
     </main>
 
     <?php include 'include/footer.php' ?>
