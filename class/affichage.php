@@ -168,7 +168,7 @@ class affichage{
 
         <section>
 
-            <aside> <img src='<?php echo $fetch['img']; ?>'> </aside>
+            <aside> <img src='<?php echo $fetch['img']; ?>' id="imgheader"> </aside>
 
             <article>
                 <h1> <?php echo $fetch['titre']; ?></h1>
@@ -504,7 +504,7 @@ class affichage{
         ?><article><?php
             foreach($fecth as list($quantity,$name,$price,$img)){
                 ?>
-                <p><img src="<?=$img ?>" class="imghisto"><?=$name ?> pour <?=$price ?>€ x<?=$quantity ?></p><?php
+                <p class="phisto"><img src="<?=$img ?>" class="imghisto"><?=$name ?> pour <?=$price ?>€ x<?=$quantity ?></p><?php
             }
             ?>
         </article>

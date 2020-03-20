@@ -25,6 +25,7 @@ $achat = new achat();
     <?php include 'include/header.php' ?>
 
     <main id="mainpanier">
+        <h1>Votre panier</h1>
     <?php 
         $affichage->panier($_SESSION['id']);
         if($achat->countarticle($_SESSION['id']) != 0){

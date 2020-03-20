@@ -21,7 +21,6 @@ body {
 
 a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
 }
 
 body::before {
@@ -42,9 +41,15 @@ main {
     flex-grow: 0.8;
     justify-content: space-evenly;
     align-items: center;
-    color: rgb(31, 31, 31);
-    background-image: url(../img/css/background.jpg);
-    background-position: fixed;
+    color: rgb(138, 72, 24);
+}
+main a{
+    color: rgb(243, 135, 57);
+    text-decoration: none;
+}
+main a:hover{
+    color: rgb(211, 39, 145);
+    text-decoration: underline;
 }
 
 
@@ -55,14 +60,21 @@ header {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-between;
-    border: 2px solid rgb(0, 0, 0);
-    background-color: beige;
+    border-bottom: 2px solid rgb(255, 174, 0);
+    background-color: rgb(255, 255, 255);
+    color: rgb(138, 72, 24);
+}
+#imgheader{
+    width: 10vw;
 }
 
 header section {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+}
+header a{
+    color: rgb(138, 72, 24);
 }
 
 /* Nav */
@@ -72,6 +84,7 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1;
+    color: rgb(138, 72, 24);
 }
 
 nav>ul {
@@ -99,7 +112,7 @@ nav li {
     list-style-type: none;
     position: relative;
     width: 180px;
-    background: rgb(199, 199, 178);
+    background: rgb(240, 174, 98);
     padding: 10px;
     margin: 0px;
     z-index: 2;
@@ -160,10 +173,12 @@ nav li li:hover>a {
 }
 
 nav li.princ:hover {
-    background: rgb(199, 199, 178);
+    background: rgb(240, 174, 98);
     border-radius: 20px;
 }
-
+.niveau2{
+    color: rgb(138, 72, 24);
+}
 /* Produit */
 
 #mainproduit{
@@ -226,10 +241,10 @@ nav li.princ:hover {
 }
 input,select {
 	box-shadow: 0px 1px 0px 0px #1c1b18;
-	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background:linear-gradient(to bottom, rgb(221, 160, 90) 5%, rgb(253, 209, 158) 100%);
 	background-color:#eae0c2;
 	border-radius:15px;
-	border:2px solid #333029;
+	border:2px solid rgb(255, 171, 93);
 	display:inline-block;
 	cursor:pointer;
 	color:#505739;
@@ -243,7 +258,7 @@ input,select {
 
 }
 input:hover {
-	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background:linear-gradient(to bottom, rgb(255, 197, 132) 5%, rgb(252, 181, 100) 100%);
 	background-color:#ccc2a6;
 }
 input:active {
@@ -383,7 +398,7 @@ table.blueTable {
 }
 
 .profil~.profil {
-    border-left: solid black 1px;
+    border-left: solid rgb(255, 174, 0) 1px;
 }
 
 .profil_form {
@@ -393,9 +408,16 @@ table.blueTable {
     width: 80%;
     justify-content: space-evenly;
     align-items: center;
-    border: solid 2px black;
+    border: solid 2px rgb(255, 174, 0);
 }
-
+/* historique d'achat */
+.imghisto{
+    width: 10vw;
+}
+.phisto{
+    display: flex;
+    align-items: center;
+}
 /* class div formulaire */
 
 .input {
@@ -444,7 +466,11 @@ table.blueTable {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: solid black 2px;
+    box-shadow:  2px 2px 2px 2px rgb(146, 145, 145);
+}
+#categorie_user div:hover{
+    box-shadow:  5px 5px 5px 5px rgb(146, 145, 145);
+
 }
 
 .categorie form {
@@ -486,10 +512,13 @@ footer {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-around;
-    border: 2px solid black;
-    background-color: beige;
+    border-top: 2px solid rgb(255, 174, 0);
+    background-color: rgb(255, 255, 255);
+    color: rgb(138, 72, 24);
 }
-
+footer a{
+    color: rgb(138, 72, 24);
+}
 footer aside {
     display: flex;
     flex-grow: 0.2;
@@ -510,12 +539,12 @@ footer section article {
 }
 
 #border1 {
-    border-left: solid 1px black;
-    border-right: solid 1px black;
+    border-left: solid 1px rgb(255, 174, 0);
+    border-right: solid 1px rgb(255, 174, 0);
 }
 
 #border2 {
-    border-right: solid 1px black;
+    border-right: solid 1px rgb(255, 174, 0);
 }
 
 footer section article li {
