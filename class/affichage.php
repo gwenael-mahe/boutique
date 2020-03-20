@@ -589,15 +589,33 @@ class affichage
     /* historique */
 
     public function historiquedetail($id){
-        $request = "SELECT achat_product.quantite, product.nom, product.prix, product.img FROM achat_product INNER JOIN product ON achat_product.id_produit = product.id WHERE achat_product.id_achat = $id";
+        $request = "SELECT achat_product.quantite, product.nom, product.prix, product.img, achat.date FROM achat_product INNER JOIN product ON achat_product.id_produit = product.id INNER JOIN achat ON achat_product.id_achat = achat.id WHERE achat_product.id_achat = $id";
         $query = mysqli_query($this->bdd,$request);
         $fecth = mysqli_fetch_all($query);
-        ?><article><?php
+        ?><article>
+        <p>Achat du <?=$fecth[0][4] ?></p>
+        <table class="blueTable">
+        <thead>
+            <tr>
+                <td>Image</td>
+                <td>Nom du jeu</td>
+                <td>Prix</td>
+                <td>quantité</td>
+            </tr>
+        </thead>
+            <?php
             foreach($fecth as list($quantity,$name,$price,$img)){
                 ?>
-                <p class="phisto"><img src="<?=$img ?>" class="imghisto"><?=$name ?> pour <?=$price ?>€ x<?=$quantity ?></p><?php
+                <tr>
+                    <td><img src="<?=$img ?>" class="imghisto"></td>
+                    <td><?=$name ?></td>
+                    <td><?=$price ?>€</td>
+                    <td><?=$quantity ?></td>
+                </tr><?php
             }
             ?>
+        </table>
+        
         </article>
         <?php
     }
