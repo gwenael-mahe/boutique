@@ -8,6 +8,10 @@ include "class/achat.php";
 
 session_start();
 
+if (!isset($_SESSION['login'])) {
+    header('location:index.php');
+}
+
 $user = new user();
 $affichage = new affichage();
 $achat = new achat();

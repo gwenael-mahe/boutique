@@ -5,6 +5,14 @@ include 'class/bdd.php';
 
 session_start();
 
+if (isset(explode('?', $_SERVER['REQUEST_URI'])[1]) == false) {
+    header('location:index.php');
+} else {
+    if (explode('?', explode('=', $_SERVER['REQUEST_URI'])[0])[1] != 'idsouscat') {
+        header('location:index.php');
+    }
+}
+
 $affichage = new affichage();
 
 if (isset($_POST['modifiersouscat'])) {

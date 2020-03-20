@@ -5,8 +5,11 @@ include 'class/affichage.php';
 include 'class/achat.php';
 include 'class/admin.php';
 
-
 session_start();
+
+if (!isset($_SESSION['id'])) {
+    header('location:index.php');
+}
 
 $affichage = new affichage();
 $achat = new achat();
@@ -26,15 +29,15 @@ $achat = new achat();
 
     <main id="mainpanier">
         <h1>Votre panier</h1>
-    <?php 
+        <?php
         $affichage->panier($_SESSION['id']);
-        if($achat->countarticle($_SESSION['id']) != 0){
-            ?>
-                <a href="validation_panier.php">Valider votre panier</a>
-            <?php
+        if ($achat->countarticle($_SESSION['id']) != 0) {
+        ?>
+            <a href="validation_panier.php">Valider votre panier</a>
+        <?php
         }
-    ?>
-    
+        ?>
+
     </main>
 
     <?php include 'include/footer.php' ?>

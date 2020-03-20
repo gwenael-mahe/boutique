@@ -45,8 +45,9 @@
             </ul>
             </li>
         <?php } ?>
-
-        <li class="princ"><a href='panier.php'> Panier </a></li>
+        <?php if (isset($_SESSION['login'])) { ?>
+            <li class="princ"><a href='panier.php'> Panier </a></li>
+        <?php } ?>
         <li class="princ"><a href='contact.php'> Contact </a></li>
         </ul>
     </nav>

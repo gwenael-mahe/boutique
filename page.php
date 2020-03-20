@@ -5,7 +5,6 @@ include 'class/affichage.php';
 include 'class/achat.php';
 include 'class/admin.php';
 
-
 session_start();
 
 $affichage = new affichage();

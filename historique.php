@@ -8,6 +8,14 @@ include 'class/admin.php';
 
 session_start();
 
+if (!isset($_SESSION['id'])) {
+    header('location:index.php');
+}
+
+if (explode('?', explode('=', $_SERVER['REQUEST_URI'])[0])[1] != 'id') {
+    header('location:index.php');
+}
+
 $affichage = new affichage();
 ?>
 
