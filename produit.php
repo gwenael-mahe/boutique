@@ -12,7 +12,6 @@ $affichage = new affichage();
 $achat = new achat();
 
 if(isset($_POST['addtocart'])){
-    echo "test";
     $achat->addtocart($_GET['id'],$_SESSION['id'],$_POST['quantity']);
 }
 if(isset($_POST['send'])){

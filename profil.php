@@ -78,6 +78,7 @@ if (isset($_GET['recherche'])) {
             <section class='profil'>
 
                 <h1> Historique d'achat </h1>
+                <?php echo $affichage->historique($_SESSION['id']) ?>
 
             </section>
 

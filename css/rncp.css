@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
 /* HTML */
 
 html {
@@ -14,13 +16,23 @@ body {
     justify-content: space-around;
     flex-grow: 1;
     margin: 0;
+    font-family: 'Pacifico', cursive;
 }
 
 a {
     text-decoration: none;
-    color: black;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+  }
 /* Main */
 
 main {
@@ -29,7 +41,17 @@ main {
     flex-grow: 0.8;
     justify-content: space-evenly;
     align-items: center;
+    color: rgb(138, 72, 24);
 }
+main a{
+    color: rgb(243, 135, 57);
+    text-decoration: none;
+}
+main a:hover{
+    color: rgb(211, 39, 145);
+    text-decoration: underline;
+}
+
 
 /* header */
 
@@ -38,8 +60,12 @@ header {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-between;
-    border: 2px solid black;
-    /* à retirer */
+    border-bottom: 2px solid rgb(255, 174, 0);
+    background-color: rgb(255, 255, 255);
+    color: rgb(138, 72, 24);
+}
+#imgheader{
+    width: 10vw;
 }
 
 header section {
@@ -58,6 +84,9 @@ header aside img{
 header form {
     margin-bottom: 15px;
 }
+header a{
+    color: rgb(138, 72, 24);
+}
 
 /* Nav */
 
@@ -66,6 +95,7 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1;
+    color: rgb(138, 72, 24);
 }
 
 nav>ul {
@@ -93,7 +123,7 @@ nav li {
     list-style-type: none;
     position: relative;
     width: 180px;
-    background: rgb(121, 121, 121);
+    background: rgb(240, 174, 98);
     padding: 10px;
     margin: 0px;
     z-index: 2;
@@ -154,14 +184,17 @@ nav li li:hover>a {
 }
 
 nav li.princ:hover {
-    background: rgb(121, 121, 121);
+    background: rgb(240, 174, 98);
     border-radius: 20px;
 }
-
+.niveau2{
+    color: rgb(138, 72, 24);
+}
 /* Produit */
 
 #mainproduit {
     padding-left: 2%;
+    padding-right: 2%;
 }
 
 .sectionproduit {
@@ -169,19 +202,15 @@ nav li.princ:hover {
     display: flex;
     flex-direction: column;
 }
-
-.imgproduct {
-    width: 20%;
-    padding-right: 2%;
+.imgproduct{
+    width: 20vw;
+    margin-right: 2%;
 }
-
-.articleproduitup {
-    background-color: aqua;
+.articleproduitup{
     display: flex;
 }
-
-.articleproduitdown {
-    background-color: bisque;
+.articleproduitdown{
+    padding-left: 1%;
     display: flex;
     justify-content: space-between;
 }
@@ -190,25 +219,24 @@ nav li.princ:hover {
     display: flex;
     flex-direction: column;
 }
-
-.submitimg {
-    width: 5%;
-}
-
-#notation {
+#notation{
     display: flex;
-    background-color: burlywood;
     align-items: center;
+    margin-top: 1%;
 }
-
-.etoile {
-    width: 2%;
+.etoile{
+    width: 2vw;
 }
 
 .sectionnotation {
     display: flex;
-    background-color: cadetblue;
+    width: 70vw;
     flex-direction: column;
+    margin-top: 1%;
+    border-style: solid;
+    border-radius: 2px;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .articlenotationup {
@@ -220,7 +248,39 @@ nav li.princ:hover {
     display: flex;
     justify-content: space-between;
 }
+.pnot{
+    width: 10vw;
+}
+#formproduit{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+input,select {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, rgb(221, 160, 90) 5%, rgb(253, 209, 158) 100%);
+	background-color:#eae0c2;
+	border-radius:15px;
+	border:2px solid rgb(255, 171, 93);
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    outline: 0;
 
+}
+input:hover {
+	background:linear-gradient(to bottom, rgb(255, 197, 132) 5%, rgb(252, 181, 100) 100%);
+	background-color:#ccc2a6;
+}
+input:active {
+	position:relative;
+	top:1px;
+}
 /* Panier */
 
 #mainpanier {
@@ -233,9 +293,9 @@ nav li.princ:hover {
 }
 
 table.blueTable {
-    border: 1px solid #1C6EA4;
+    border: 1px solid beige;
     background-color: #EEEEEE;
-    width: 100%;
+    width: 50vw;
     text-align: left;
     border-collapse: collapse;
 }
@@ -251,13 +311,12 @@ table.blueTable tbody td {
 
 table.blueTable tr:nth-child(even) {
     background: #D0E4F5;
-}
-
-table.blueTable thead {
-    background: #1C6EA4;
-    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  }
+  table.blueTable thead {
+    background: #f5f5dc;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ecece3 66%, beige 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ecece3 66%, beige 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ecece3 66%, beige 100%);
     border-bottom: 2px solid #444444;
 }
 
@@ -282,18 +341,16 @@ table.blueTable tfoot .links {
 
 table.blueTable tfoot .links a {
     display: inline-block;
-    background: #1C6EA4;
+    background: beige;
     color: #FFFFFF;
     padding: 2px 8px;
     border-radius: 5px;
+  }
+.imgpanier{
+    width: 5vw;
 }
-
-.imgpanier {
-    width: 5%;
-}
-
-.deletepanier {
-    width: 3%;
+.deletepanier{
+    width: 3vw;
 }
 
 /* validation panier */
@@ -339,7 +396,7 @@ table.blueTable tfoot .links a {
     flex-grow: 0.35;
     height: 90%;
     align-items: center;
-    border-left: solid black 1px;
+    border-left: solid rgb(255, 174, 0) 1px;
 }
 
 .gestion_site ul {
@@ -366,7 +423,7 @@ table.blueTable tfoot .links a {
 }
 
 .profil~.profil {
-    border-left: solid black 1px;
+    border-left: solid rgb(255, 174, 0) 1px;
 }
 
 .profil_form {
@@ -376,9 +433,16 @@ table.blueTable tfoot .links a {
     width: 80%;
     justify-content: space-evenly;
     align-items: center;
-    border: solid 2px black;
+    border: solid 2px rgb(255, 174, 0);
 }
-
+/* historique d'achat */
+.imghisto{
+    width: 10vw;
+}
+.phisto{
+    display: flex;
+    align-items: center;
+}
 /* class div formulaire */
 
 .input {
@@ -424,16 +488,6 @@ table.blueTable tfoot .links a {
     align-items: center;
 }
 
-#categorie_user #accueil {
-    display: flex;
-    flex-basis: 20%;
-    height: 55%;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border: solid black 2px;
-}
-
 #categorie_user #titre {
     display: flex;
     flex-direction: row;
@@ -442,12 +496,16 @@ table.blueTable tfoot .links a {
 
 #categorie_user div {
     display: flex;
-    flex-basis: 20%;
-    height: 45%;
+    flex-basis: 15%;
+    height: auto;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: solid black 2px;
+    box-shadow:  2px 2px 2px 2px rgb(146, 145, 145);
+}
+#categorie_user div:hover{
+    box-shadow:  5px 5px 5px 5px rgb(146, 145, 145);
+
 }
 
 #nop {
@@ -463,7 +521,8 @@ table.blueTable tfoot .links a {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: solid black 1px;
+    border-bottom: solid rgb(255, 174, 0) 1px;
+    margin-top: 2px;
 }
 
 .categorie form div {
@@ -498,10 +557,13 @@ footer {
     flex-direction: column;
     flex-grow: 0.1;
     justify-content: space-around;
-    border: 2px solid black;
-    /* à retirer */
+    border-top: 2px solid rgb(255, 174, 0);
+    background-color: rgb(255, 255, 255);
+    color: rgb(138, 72, 24);
 }
-
+footer a{
+    color: rgb(138, 72, 24);
+}
 footer aside {
     display: flex;
     flex-direction: column;
@@ -532,12 +594,12 @@ footer section article {
 }
 
 #border1 {
-    border-left: solid 1px black;
-    border-right: solid 1px black;
+    border-left: solid 1px rgb(255, 174, 0);
+    border-right: solid 1px rgb(255, 174, 0);
 }
 
 #border2 {
-    border-right: solid 1px black;
+    border-right: solid 1px rgb(255, 174, 0);
 }
 
 footer section article li {

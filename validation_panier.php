@@ -9,12 +9,13 @@ include 'class/admin.php';
 session_start();
 
 $achat = new achat();
+$affichage = new affichage();
 $prix = $achat->pricecalculation($_SESSION['id']);
 if(isset($_POST["send"])){
-    if(!empty($_POST["nom"]) && !empty($_POST["prenom"]) && strlen($_POST["cbname"]) == 16 && !empty($_POST["end"]) && strlen($_POST["crypto"]) == 3){
-        $achat->addtohistory($_SESSION['id'],$prix);
-        //$achat->resetcart($_SESSION['id']);
-    }
+    echo "test";
+    $achat->addtohistory($_SESSION['id'],$prix);
+    $achat->resetcart($_SESSION['id']);
+    header("Location:index.php");
 }
 ?>
 
@@ -39,7 +40,7 @@ if(isset($_POST["send"])){
     <label>Numéro de carte bleu</label>
     <input type="number" name="cbname">
     <label>Expire</label>
-    <input type="number" name="end">
+    <input type="month" name="end">
     <label>Cryptograme</label>
     <input type="number" name="crypto">
     <input type="submit" name="send">

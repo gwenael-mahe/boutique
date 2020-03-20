@@ -9,7 +9,6 @@ include 'class/admin.php';
 session_start();
 
 $affichage = new affichage();
-$achat = new achat();
 ?>
 
 <!DOCTYPE html>
@@ -18,21 +17,15 @@ $achat = new achat();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/rncp.css">
-    <title> Panier </title>
+    <title> Votre historique </title>
 </head>
 
 <body>
     <?php include 'include/header.php' ?>
 
-    <main id="mainpanier">
-        <h1>Votre panier</h1>
+    <main>
     <?php 
-        $affichage->panier($_SESSION['id']);
-        if($achat->countarticle($_SESSION['id']) != 0){
-            ?>
-                <a href="validation_panier.php">Valider votre panier</a>
-            <?php
-        }
+        $affichage->historiquedetail($_GET['id']);
     ?>
     
     </main>
