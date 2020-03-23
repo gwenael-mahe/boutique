@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 20 mars 2020 à 10:41
+-- Généré le :  lun. 23 mars 2020 à 09:54
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `basicpage` (
 --
 
 INSERT INTO `basicpage` (`id`, `titre`, `description`, `id_page`, `img`) VALUES
-(1, 'Bombyx', '  Bonjour ici nous vous proposons une sÃ©lection de jeux de sociÃ©tÃ©s .. blablabla  ', 1, 'img/logo/1.png');
+(1, 'Bombyx', '   Bonjour ici nous vous proposons une sÃ©lection de jeux en tout genre pour pouvoir vous amusez en famille ou avec des amis', 1, 'img/logo/1.png');
 
 -- --------------------------------------------------------
 
@@ -149,10 +149,10 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 --
 
 INSERT INTO `categorie` (`id`, `nom`, `description`, `img`) VALUES
-(14, 'Jeux de carte', '   Ici vous trouverez des jeux de cartes ! ', 'img/cat/default.png'),
-(15, 'Jeux de stratÃ©gie', ' ', 'img/cat/default.png'),
-(16, 'Jeux de rÃ´le', ' ', 'img/cat/default.png'),
-(13, 'Jeux de plateau ', ' ', 'img/cat/default.png');
+(14, 'Jeux de carte', '    Ici vous trouverez des jeux de cartes !  ', 'img/cat/14.png'),
+(15, 'Jeux de stratÃ©gie', '          Ici vous trouverez des jeux de stratÃ©gie!   ', 'img/cat/15.png'),
+(16, 'Jeux de rÃ´le', '        Ici vous trouverez des jeux de rÃ´le!   ', 'img/cat/16.png'),
+(13, 'Jeux de plateau ', '        Ici vous trouverez des jeux de plateau!   ', 'img/cat/13.png');
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `img` varchar(255) DEFAULT 'img/product/default.png',
   `id_souscat` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `product`
@@ -230,7 +230,10 @@ INSERT INTO `product` (`id`, `nom`, `prix`, `descriptionup`, `descriptiondown`, 
 (23, 'Catan DUEL', 23, 'Catan Duel (ex Les Princes de Catane) est un jeu de cartes et de stratÃ©gie pour 2 joueurs qui se situe dans l\'univers de Catane et s\'inspire du jeu plateau du mÃªme nom.', ' Cette adaptation de Catan en jeu de cartes se limite Ã  2 joueurs. Ici il nâ€™est plus question de plateau, mais de cartes que lâ€™on Ã©tale devant soi, constituant ainsi sa colonie que lâ€™on dÃ©veloppe. On retrouve dans ce jeu les mÃ©canismes de collecte des ressources, les Ã©changes commerciaux et les Points de Victoires Ã  accumuler. Cependant, la configuration est diffÃ©rente. Les joueurs peuvent dÃ©sormais construire de nombreux bÃ¢timents diffÃ©rents (reprÃ©sentÃ©s sous forme de cartes). Les colonies sont exposÃ©es entre les 2 joueurs, chacun la dÃ©veloppant face Ã  lui. On ne retrouve donc pas lâ€™interaction de la version plateau et les actions possibles contre lâ€™adversaire sont de nature diffÃ©rente.\r\n\r\nDans le jeu Catan Duel, chaque partie est diffÃ©rente, puisque les situations de dÃ©part sont choisies alÃ©atoirement, il y a donc d\'innombrables possibilitÃ©s de jouer! Dans cette nouvelle version, vous trouverez aussi un nouveau concept : 3 paquets de cartes thÃ©matisÃ©s, Ã  complexitÃ© variable, qui vous permettront de jouer le jeu diffÃ©remment. Il s\'agit d\'un jeu de pose et de combinaison, assez calculatoire. Il permet de nouvelles tactiques et propose une approche diffÃ©rente de lâ€™univers de Â« Catane Â».\r\n\r\nLes Princes de Catane est la rÃ©Ã©dition 2012 de l\'ancien Catane - Le Jeu de Cartes. Cette nouvelle version contient 180 cartes au lieu de 120 mais ce n\'est pas tout.\r\n\r\nPlongez au cÅ“ur de Catan. Vous commencez avec une petite principautÃ© de quelques cartes. Au hasard des dÃ©s, les terrains vous livrent des ressources, que vous devez utiliser judicieusement pour placer de nouvelles cartes. De la stratÃ©gie et un soupÃ§on de chance feront la diffÃ©rence entre victoire et dÃ©faite !', 'img/product/23.jpg', 12),
 (24, 'Risk', 40, ' Avec le jeu de sociÃ©tÃ© Risk dâ€™Hasbro, votre enfant sâ€™amuse Ã  conquÃ©rir le monde ! En jouant Ã  Risk, il accroÃ®t sa logique et dÃ©veloppe des stratÃ©gies pour gagner la partie.', ' no idea', 'img/product/24.jpeg', 10),
 (25, 'Dixit', 30, '  Dixit est un jeu d\'ambiance intuitif et poÃ©tique. Les joueurs doivent dÃ©couvrir Ã  quelle carte illustrÃ©e correspond la phrase prononcÃ©e par le \"conteur\" de la partie. Et cela, sans tomber dans les piÃ¨ges tendus par les autres joueurs. Dixit suscite l\'imagination des enfants, leur sens de l\'observation et les encourage Ã  s\'exprimer. Un jeu de sociÃ©tÃ© original, esthÃ©tique et familial. ', '  Intelligent : user de finesse et d\'intuition\r\nMalin : Ã©viter les piÃ¨ges tendus par les autres joueurs\r\nEducatif : dÃ©veloppe imagination, observation et langage ', 'img/product/25.jpg', 13),
-(26, 'Initiation au jeux de rÃ´le', 15, '  Le jeu de rÃ´le, enfin accessible Ã  tous !\r\nVous voilÃ  dans un village oÃ¹ rÃ¨gne un mystÃ¨re bien Ã©trange ! Ogre et gobelins semblent au service d\'une certaine \" Dormeuse \". Votre Ã©quipe d\'aventuriers va devoir s\'entraider et relever les dÃ©fis pour espÃ©rer percer les secrets de ce village ! ', '  Cette boÃ®te d\'initiation au jeu de rÃ´le vous donne tout, clÃ© en main : un livre de 96 pages avec les cinq scÃ©narios, les conseils pour le maÃ®tre du jeu, les rÃ¨gles du jeu de rÃ´le pour dÃ©buter. 50 cartes pour animer la partie, 5 cartes personnages et un paravent. ', 'img/product/26.jpg', 14);
+(26, 'Initiation au jeux de rÃ´le', 15, '  Le jeu de rÃ´le, enfin accessible Ã  tous !\r\nVous voilÃ  dans un village oÃ¹ rÃ¨gne un mystÃ¨re bien Ã©trange ! Ogre et gobelins semblent au service d\'une certaine \" Dormeuse \". Votre Ã©quipe d\'aventuriers va devoir s\'entraider et relever les dÃ©fis pour espÃ©rer percer les secrets de ce village ! ', '  Cette boÃ®te d\'initiation au jeu de rÃ´le vous donne tout, clÃ© en main : un livre de 96 pages avec les cinq scÃ©narios, les conseils pour le maÃ®tre du jeu, les rÃ¨gles du jeu de rÃ´le pour dÃ©buter. 50 cartes pour animer la partie, 5 cartes personnages et un paravent. ', 'img/product/26.jpg', 14),
+(31, 'A Game of Thrones : The Card Game - Things we do for Love', 19, ' Cette extension contient 88 cartes qui s\'inspirent de la riche histoire du jeu en tant que CCG et LCG, apportant des cartes puissantes et emblÃ©matiques des Ã©poques prÃ©cÃ©dentes de la vie du jeu jusqu\'Ã  la deuxiÃ¨me Ã©dition du LG A Game of Thrones.', ' Vous trouverez dans ce pack :\r\n\r\n3 exemplaires de 2 cartes diffÃ©rentes de chacune des 8 factions\r\n3 exemplaires de 10 cartes neutres diffÃ©rentes\r\n1 exemplaire de 4 cartes d\'agenda diffÃ©rentes\r\n1 exemplaire de 6 cartes d\'intrigues diffÃ©rentes ', 'img/product/31.jpg', 11),
+(32, 'Terraforming Mars', 50, ' L\'Ã¨re de la domestication de Mars a commencÃ©. Dans Terraforming Mars, de puissantes corporations travaillent pour rendre la PlanÃ¨te Rouge habitable. La tempÃ©rature, l\'oxygÃ¨ne et les ocÃ©ans sont les trois axes de dÃ©veloppement principaux. Mais pour triompher, il faudra aussi construire des infrastructures pour les gÃ©nÃ©rations futures.', ' Dans les annÃ©es 2400, Ã  une Ã©poque future mais pas si lointaine, lâ€™espÃ¨ce humaine commence la domestication de la PlanÃ¨te Rouge. Câ€™est le commencement de la terraformation de Mars. Le Gouvernement Mondial de la Terre sponsorise de puissantes corporations, qui sont envoyÃ©es sur Mars pour initier de grands projets dâ€™envergure. Vous Ãªtes lâ€™une dâ€™entre elles. Afin de rendre Mars habitable, ces compagnies Å“uvrent pour remplir 3 grandes missions principales :  \r\n\r\nAugmenter la tempÃ©rature\r\nAugmenter le niveau d\'oxygÃ¨ne \r\nAugmenter les Ã©tendues ocÃ©aniques', 'img/product/32.jpg', 12),
+(33, '7 Wonders', 39, ' Dans 7 Wonders, prenez la tÃªte de l\'une des sept grandes citÃ©s du monde antique et laissez votre empreinte dans l\'histoire des civilisations.\r\n\r\n', ' 7 Plateaux Merveille\r\n7 Cartes Merveille\r\n49 Cartes Age I\r\n49 Cartes Age II\r\n50 Cartes Age III\r\n46 Jetons Conflit\r\n46 PiÃ¨ces de valeur 1\r\n24 PiÃ¨ces de valeur 3\r\n1 Carnet de score\r\n1 Livret de rÃ¨gles\r\n2 Cartes \"2 Joueurs\"', 'img/product/33.jpg', 14);
 
 -- --------------------------------------------------------
 
@@ -253,12 +256,12 @@ CREATE TABLE IF NOT EXISTS `sous_categorie` (
 --
 
 INSERT INTO `sous_categorie` (`id`, `nom`, `description`, `img`, `id_categorie`) VALUES
-(14, 'Initiation', '   ', 'img/sous_cat/default.png', 16),
-(13, 'StratÃ©gie', ' ', 'img/sous_cat/default.png', 14),
-(12, 'Gestion et dÃ©veloppement', '   ', 'img/sous_cat/default.png', 15),
-(11, 'Classique', '   ', 'img/sous_cat/default.png', 14),
-(10, '2-6 joueurs', ' ', 'img/sous_cat/default.png', 13),
-(9, '3-7 joueurs', ' ', 'img/sous_cat/default.png', 13);
+(14, 'Initiation', '     ', 'img/sous_cat/14.jpg', 16),
+(13, 'StratÃ©gie', '   ', 'img/sous_cat/13.jpg', 14),
+(12, 'Gestion et dÃ©veloppement', '     ', 'img/sous_cat/12.jpg', 15),
+(11, 'Classique', '     ', 'img/sous_cat/11.jpg', 14),
+(10, '2-6 joueurs', '   ', 'img/sous_cat/10.jpg', 13),
+(9, '3-7 joueurs', '   ', 'img/sous_cat/9.jpg', 13);
 
 -- --------------------------------------------------------
 
